@@ -1657,6 +1657,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Liquidacion\LiquidacionPersonal.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="V3-TFG-Alexander Hurtado Briceño.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
