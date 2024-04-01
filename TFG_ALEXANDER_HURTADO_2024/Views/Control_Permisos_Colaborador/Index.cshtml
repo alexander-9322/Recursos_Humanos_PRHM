@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DB.Models.control_de_permiso_colaborador>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/content/BuscadorStyle.css">
+</head>
+
+<h2 class="text-left mb-4">Solicitar permiso</h2>
+
+<p class="text-left mb-4 ml-0">
+    <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+</p>
+
+<div class="row mb-3">
+    <div class="col-md-6 offset-md-0">
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+            <button class="btn btn-outline-secondary" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center">Id permiso</th>
+                <th class="text-center">Fecha Solicitud</th>
+                <th class="text-center">Descripción</th>
+                <th class="text-center">Aprobado</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.empleado.persona.Nombre)</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Id_Permiso)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Fecha_Solicitud)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.catalogo_control_permisos_colaborador.Descripcion)</td>
+                    <td>@(item.Abrobado ? "Aprobado" : "Sin Aprobar")</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.empleado.persona.Nombre)</td>
+                    <td class="text-center">
+                        @Html.ActionLink("Aprobar", "Edit", new { Fecha_Aprobacion = item.Fecha_Solicitud, idEmpleado = item.Empleados_Id_Empleado, idCatalogoPermiso = item.IdTipoPermiso }, new { @class = "btn btn-warning btn-sm" })
+                        @Html.ActionLink("Detalles", "Details", new { Fecha_Aprobacion = item.Fecha_Solicitud, idEmpleado = item.Empleados_Id_Empleado, idCatalogoPermiso = item.IdTipoPermiso }, new { @class = "btn btn-info btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete", new { Fecha_Aprobacion = item.Fecha_Solicitud, idEmpleado = item.Empleados_Id_Empleado, idCatalogoPermiso = item.IdTipoPermiso }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").each(function () {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(value)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    generarPDF('Permisos.pdf');
+
+
+</script> @if (Session["Error"] != null)
+{
+    <script>NoSeElimino('@Session["Error"].ToString()');</script>
+}

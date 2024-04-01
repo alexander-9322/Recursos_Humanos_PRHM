@@ -1,0 +1,84 @@
+﻿@model DB.Models.liquidacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/DetalleStyle.css" />
+</header>
+<h2>Detalles de Liquidación</h2>
+<hr />
+
+
+<style>
+    dl.dl-horizontal dt {
+        width: 40%; /* Ancho para las etiquetas de descripción */
+        float: left;
+        clear: left;
+        text-align: left; /* Alineación a la izquierda para las etiquetas de descripción */
+        margin-right: 10px;
+    }
+
+    dl.dl-horizontal dd {
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-bottom: 10px; /* Espaciado entre elementos */
+    }
+</style>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Liquidación</h4>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha de salida
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha_salida)
+                        </dd>
+
+                        <dt>
+                            Días de preaviso
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Dias_Preaviso)
+                        </dd>
+
+                        <dt>
+                            Tipo de liquidación
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.catalago_tipo_liquidacion.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Monto
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Monto)
+                        </dd>
+
+                        <dt>
+                            Id del empleado
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Empleados_Id_Empleado)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="panel-footer text-center">
+                    <p>
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+﻿@model DB.Models.Cruds.Planilla
+
+@{
+    ViewBag.Title = "Eliminar Planilla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EliminarStyle.css" />
+</header>
+
+
+<style>
+    dl.dl-horizontal dt {
+        width: 40%; /* Ancho para las etiquetas de descripción */
+        float: left;
+        clear: left;
+        text-align: left; /* Alineación a la izquierda para las etiquetas de descripción */
+        margin-right: 10px;
+    }
+
+    dl.dl-horizontal dd {
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-bottom: 10px; /* Espaciado entre elementos */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="alert-container">
+                <div class="alert alert-warning">
+                    <strong>Atención:</strong> Si eliminas esta planilla no podrás recuperarla.
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Eliminar planilla</h2>
+                </div>
+
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PLANILLA.Fecha)
+                        </dd>
+
+                        <dt>
+                            Horas labordas
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PLANILLA.Horas_Laboradas)
+                        </dd>
+
+                        <dt>
+                            Catálogo de deducciones
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DEDUCCIONES.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Total neto
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PLANILLA.Total_Neto)
+                        </dd>
+
+                        <dt>
+                            Tipo de deducción
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DEDUCCIONES.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Id empleado
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.PERSONA.Nombre) @Html.DisplayFor(model => model.PERSONA.Apeliido1) @Html.DisplayFor(model => model.PERSONA.Apellido2)
+                        </dd>
+
+                    </dl>
+                    <Hr />
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-actions no-color text-center" style="margin-top: -20px;">
+                            <div style="display: inline-block;">
+                                <input type="submit" value="Eliminar" class="btn btn-primary" /> |
+                                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

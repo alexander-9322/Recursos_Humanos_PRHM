@@ -1,0 +1,59 @@
+﻿@model DB.Models.incapacidade
+
+@{
+    ViewBag.Title = "Detalles Incapacidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>INCAPACIDADE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha_Inicio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fecha_Inicio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha_Fin)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Fecha_Fin)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Monto_Incapacidad)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Monto_Incapacidad)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CATALAGO_TIPO_INCAPACIDADES.Descripcion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CATALAGO_TIPO_INCAPACIDADES.Descripcion)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

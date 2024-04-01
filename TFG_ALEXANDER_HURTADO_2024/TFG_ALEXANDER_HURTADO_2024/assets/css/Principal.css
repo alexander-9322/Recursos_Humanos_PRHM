@@ -1,0 +1,82 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    header img {
+        max-width: 200px;
+        height: auto;
+    }
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+main p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+    margin-top: 20px; /* Espacio entre párrafos */
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .feature i {
+        font-size: 3rem; /* Tamaño de los iconos */
+        margin-right: 20px; /* Espacio entre iconos y texto */
+        color: #007bff; /* Color de los iconos */
+    }
+
+@media screen and (max-width: 600px) {
+    header {
+        padding: 20px 0;
+    }
+
+        header img {
+            max-width: 150px;
+        }
+
+    .container {
+        padding: 10px;
+    }
+
+    .feature {
+        flex-direction: column;
+        text-align: center;
+    }
+
+        .feature i {
+            margin: 0 auto 10px auto; /* Espacio entre iconos y texto en dispositivos móviles */
+                    
+        }
+}

@@ -1,0 +1,81 @@
+﻿@model DB.Models.horas_extras
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/DetalleStyle.css" />
+</header>
+
+<style>
+    dl.dl-horizontal dt {
+        width: 40%; /* Ancho para las etiquetas de descripción */
+        float: left;
+        clear: left;
+        text-align: left; /* Alineación a la izquierda para las etiquetas de descripción */
+        margin-right: 10px;
+    }
+
+    dl.dl-horizontal dd {
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-bottom: 10px; /* Espaciado entre elementos */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Detalles de horas extras</h2>
+                </div>
+
+                <div class="panel-body">
+                    @*<h4>Horas extras</h4>*@
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Id horas extras
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Id_Horas)
+                        </dd>
+
+                        <dt>
+                           Cantidad de horas
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cantidad_Horas_Extras)
+                        </dd>
+
+                        <dt>
+                            Tipo de hora
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.catalago_tipo_horas_extras.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Id empleado
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Empleados_Id_Empleado)
+                        </dd>
+
+                    </dl>
+                </div>
+                <div class="panel-footer text-center">
+                    <p>
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                    </p>
+                </div>
+            </div>
+    </div>
+</div>
+</div>

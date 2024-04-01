@@ -1,0 +1,99 @@
+﻿@model DB.Models.Cruds.Liquidacion
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/content/CreateStyle.css">
+</header>
+
+<style>
+    .control-label
+    {
+        white-space:nowrap;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Create</h2>
+                </div>
+
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Liquidación</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LIQUIDACION.Id_Liquidacion, "Id liquidación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.LIQUIDACION.Id_Liquidacion, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el Id de la liquidación" } })
+                                @Html.ValidationMessageFor(model => model.LIQUIDACION.Id_Liquidacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LIQUIDACION.Fecha_salida, "Fecha de salida", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.LIQUIDACION.Fecha_salida, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                @Html.ValidationMessageFor(model => model.LIQUIDACION.Fecha_salida, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LIQUIDACION.Dias_Preaviso, "Días de preaviso", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.LIQUIDACION.Dias_Preaviso, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese los días de preaviso" } })
+                                @Html.ValidationMessageFor(model => model.LIQUIDACION.Dias_Preaviso, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HizoPreaviso, "Hizo Preaviso", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <select id="HizoPreaviso" name="HizoPreaviso" class="form-control">
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LIQUIDACION.Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion, "Id tipo liquidación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.LIQUIDACION.Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion, (SelectList)ViewBag.Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion, "Seleccione un distrito", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LIQUIDACION.Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LIQUIDACION.Empleados_Id_Empleado, "Id empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.LIQUIDACION.Empleados_Id_Empleado, (SelectList)ViewBag.Empleados_Id_Empleado, "Seleccione un distrito", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LIQUIDACION.Empleados_Id_Empleado, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Crear" class="btn btn-primary" />
+                                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+﻿@model DB.Models.canton
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin-top: -150px;
+    }
+
+    .alert-container {
+        width: 400px; /* Mismo ancho que el panel */
+        margin-top: -20px; /* Ajusta según tus necesidades */
+    }
+
+    .panel {
+        width: 400px;
+        border: 2px solid #5bc0de;
+        border-radius: 8px;
+        margin-top: 50px;
+    }
+
+    .panel-heading {
+        background-color: #5bc0de;
+        border-bottom: 2px solid #5bc0de;
+        border-radius: 6px 6px 0 0;
+    }
+
+    .panel-body {
+        padding: 20px;
+        background-color: #f0f0f0; /* Fondo gris */
+    }
+
+    .dl-horizontal dt {
+        float: left;
+        width: 160px;
+        overflow: hidden;
+        clear: left;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+
+    .btn-default {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+        color: #fff;
+    }
+
+        .btn-default:hover {
+            background-color: #4da2c1;
+            border-color: #4da2c1;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="alert-container">
+                <div class="alert alert-warning">
+                    <strong>Atención:</strong> Si eliminas a este canton no podras recuperarlo.
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Eliminar Cantón</h2>
+                </div>
+
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Cantón
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Provincia
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.provincia.Descripcion)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())     {
+                        @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color text-center" style="margin-top: -10px;">
+                    <input type="submit" value=" Eliminar" class="btn btn-primary" /> |
+                    @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-danger" })
+                </div>
+                       }
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

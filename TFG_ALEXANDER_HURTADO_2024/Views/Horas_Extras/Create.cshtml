@@ -1,0 +1,97 @@
+﻿@model DB.Models.horas_extras
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crear horas extras</title>
+ 
+    <link rel="stylesheet" type="text/css" href="~/content/CreateStyle.css">
+    
+</head>
+
+<style>
+    .control-label
+    {
+        white-space:nowrap;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="text-center">Crear horas extras</h2>
+                    </div>
+
+                    <div class="panel-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            @*<h4>HORAS_EXTRAS</h4>*@
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Id_Horas, "Id horas", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Id_Horas, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el Id de las Horas Extras" } })
+                                    @Html.ValidationMessageFor(model => model.Id_Horas, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cantidad_Horas_Extras, "Cantidad de horas extras", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Cantidad_Horas_Extras, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese la cantidad de Horas Extras" } })
+                                    @Html.ValidationMessageFor(model => model.Cantidad_Horas_Extras, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Fecha_Horas_Trabajadas, "Fecha de horas trabajadas", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.Fecha_Horas_Trabajadas, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", max = DateTime.Now.ToString("yyyy-MM-dd") , placeholder = "Ingrese la Fecha de las Horas Trabajadas" })
+                                    @Html.ValidationMessageFor(model => model.Fecha_Horas_Trabajadas, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Empleados_Id_Empleado, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Empleados_Id_Empleado", ViewBag.Empleados_Id_Empleado as SelectList, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Empleados_Id_Empleado, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Catalago_Tipo_Horas_Extras_Id_Hora_Extra, "Id tipo horas extras", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Catalago_Tipo_Horas_Extras_Id_Hora_Extra", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Catalago_Tipo_Horas_Extras_Id_Hora_Extra, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="submit" class="btn btn-success">Crear</button>
+                                    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

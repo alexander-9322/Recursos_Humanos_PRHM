@@ -1,0 +1,15 @@
+﻿
+dl.dl-horizontal dt {
+    width: 40%; /* Ancho para las etiquetas de descripción */
+    float: left;
+    clear: left;
+    text-align: left; /* Alineación a la izquierda para las etiquetas de descripción */
+    margin-right: 10px;
+}
+
+dl.dl-horizontal dd {
+    margin-left: 0; /* Elimina el margen izquierdo */
+    margin-bottom: 10px; /* Espaciado entre elementos */
+}
+
+

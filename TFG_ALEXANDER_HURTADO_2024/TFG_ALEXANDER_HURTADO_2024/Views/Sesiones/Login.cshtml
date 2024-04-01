@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+@model DB.Models.Sesion.Login
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>PRHM</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendors/mdi/css/materialdesignicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendors/flag-icon-css/css/flag-icon.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendors/css/vendor.bundle.base.css")">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendors/jquery-bar-rating/css-stars.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/assets/vendors/font-awesome/css/font-awesome.min.css")" />
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="@Url.Content("~/assets/css/demo_1/style.css")" />
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="@Url.Content("~/assets/images/favicon.png")" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <style>
+        /* Aquí puedes añadir tus estilos personalizados */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-container">
+                    <h2 class="text-center mb-4">Login</h2>
+                    @using (Html.BeginForm("ValidarCredenciales", "Sesiones", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.correo, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.correo, new { @class = "form-control col-12" })
+                            @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.clave, htmlAttributes: new { @class = "control-label" })
+                            @Html.PasswordFor(model => model.clave, new { @class = "form-control col-12" })
+                            @Html.ValidationMessageFor(model => model.clave, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   
+
+    @if (Session["Error"] != null)
+    {
+
+        <script>
+            NoSeElimino();
+
+            function NoSeElimino() {
+
+                let message = '@Session["Error"].ToString()';
+
+                Swal.fire({
+                    icon: "error",
+                    title: message
+                });
+                @{ Session["Error"] = null; }
+            }
+
+
+        </script>
+    }
+</body>
+</html>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<DB.Models.Usuarios.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>Usuarios</title>
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/BuscadorStyle.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+
+
+
+<body>
+    <h2 class="text-left mb-4">Usuarios</h2>
+
+    <p class="text-left mb-4 ml-0">
+        @Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-primary" })
+        <button id="generarPdfBtn" class="btn btn-danger ml-2">Generar PDF</button>
+        <button id="export-btn" class="btn btn-primary">Exportar a Excel</button>
+    </p>
+    <div class="row mb-3">
+        <div class="col-md-6 offset-md-0">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Correo</th>
+                    <th>Activo</th>
+                    <th>Bloqueado</th>
+                    <th>Id Empleado</th>
+                    <th>Tipo de usuario</th>
+                    <th>Cédula</th>
+                    <th>Nombre completo</th>
+                    <th>Teléfono</th>
+                    <th>Provincia</th>
+                    <th>Cantón</th>
+                    <th>Distrito</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.USUARIO.Correo)</td>
+                        <td>@(item.USUARIO.Activo ? "Verdadero" : "Falso")</td>
+                        <td>@(item.USUARIO.Bloqueado ? "Verdadero" : "Falso")</td>
+                        <td>
+                            @{
+                                var jefaturaId = item.EMPLEADO.Jefatura_Id_Empleado;
+                                var rol = jefaturaId == 1 ? "administrador" : (jefaturaId == 2 ? "empleado" : "otro rol");
+                                @Html.DisplayFor(modelItem => rol)
+                            }
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.EMPLEADO.Jefatura_Id_Empleado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PERSONA.Cedula)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PERSONA.Nombre) @Html.DisplayFor(modelItem => item.PERSONA.Apeliido1) @Html.DisplayFor(modelItem => item.PERSONA.Apellido2)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TELEFONO.idTelefono)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DIRECCION.distrito.canton.provincia.Descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DIRECCION.distrito.canton.Descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DIRECCION.distrito.Descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DIRECCION.Otras_sennas)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "EditAdmin", new { cedula = item.PERSONA.Cedula }, new { @class = "btn btn-warning btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").each(function () {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(value)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Estilos CSS -->
+<script>
+    generarPDF('Usuario.pdf');
+
+    generarExcel('Usuarios');
+</script> @if (Session["Error"] != null)
+{
+    <script>NoSeElimino('@Session["Error"].ToString()');</script>
+}

@@ -1,0 +1,65 @@
+﻿@model DB.Models.distrito
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/DetalleStyle.css" />
+</header>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Detalles del Distrito</h2>
+                </div>
+
+                <div class="panel-body">
+                    <h4>
+                        Distrito
+                    </h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Distrito
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                        <dt>
+                           Cantón
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.canton.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Provincia
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.canton.provincia.Descripcion)
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="panel-footer text-center">
+                    <p>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.idDistrito, idCanton = Model.Canton_idCanton, idProvincia = Model.Canton_Provincia_idProvincia }, new { @class = "btn btn-default" }) |
+                        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-danger" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,65 @@
+﻿@model DB.Models.distrito
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EliminarStyle.css" />
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="alert-container">
+                <div class="alert alert-warning">
+                    <strong>Atención:</strong> Si eliminas este Distrito no podrás recuperarla.
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Eliminar Distrito</h2>
+                </div>
+
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                           Distrito
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Cantón
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.canton.Descripcion)
+                        </dd>
+
+                        <dt>
+                            Provincia
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.canton.provincia.Descripcion)
+                        </dd>
+                    </dl>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-actions no-color text-center" style="margin-top: -20px;">
+                        <input type="submit" value=" Eliminar" class="btn btn-primary" /> |
+                        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-danger" })
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

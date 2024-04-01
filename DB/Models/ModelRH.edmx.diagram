@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f51b164239e044e29690ad212be18c8c" Name="Diagram1">
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.aprobacione" Width="1.5" PointX="12.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.calculo_aguinaldo" Width="1.5" PointX="10.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.canton" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalago_cedula" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalago_desempeño" Width="1.5" PointX="12.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalago_tipo_horas_extras" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalago_tipo_liquidacion" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalogo_control_permisos_colaborador" Width="1.5" PointX="5.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalogo_tipo_incapacidades" Width="1.5" PointX="7.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.detalles_liquidacion" Width="1.5" PointX="12.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.detalles_planilla" Width="1.5" PointX="10" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.direccion" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.distrito" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.empleado" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.evaluacion_remndimiento_colaborador" Width="1.5" PointX="15" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.horas_extras" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.incapacidade" Width="1.5" PointX="10" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.liquidacion" Width="1.5" PointX="10" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.persona" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.planilla" Width="1.5" PointX="7.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.provincia" Width="1.5" PointX="1.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.vacacione" Width="1.5" PointX="14.75" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.canton_fk_Canton_Provincia1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.distrito_fk_Distrito_Canton1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.persona_fk_Persona_Catalago_Cedula1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.evaluacion_remndimiento_colaborador_fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.horas_extras_fk_Horas_Extras_Catalago_Tipo_Horas_Extras1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.liquidacion_fk_Liquidacion_Catalago_Tipo_Liquidacion1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.incapacidades_fk_Incapacidades_Catalogo_Tipo_Incapacidades1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.detalles_liquidacion_fk_Detalles_Liquidacion_Liquidacion1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.detalles_planilla_fk_Detalles_Planilla_Planilla1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.direccion_fk_Direccion_Distrito1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.direccion_fk_Direccion_Persona1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.empleados_fk_Empleados_Persona1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.telefono" Width="1.5" PointX="5.25" PointY="10" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.telefono_fk_Telefono_Persona1" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.usuario" Width="1.5" PointX="13.375" PointY="12.75" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador" Width="1.5" PointX="8" PointY="13.625" />
+        <AssociationConnector Association="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador_fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1" />
+        <EntityTypeShape EntityType="PRHM_INSTALACIONES_RHModel.catalago_deducciones" Width="4" PointX="0.75" PointY="15.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

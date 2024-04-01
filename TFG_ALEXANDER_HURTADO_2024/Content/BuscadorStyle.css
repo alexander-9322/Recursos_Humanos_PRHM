@@ -1,0 +1,29 @@
+﻿
+/* Estilos para el buscador */
+.input-group {
+    position: relative;
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    margin-bottom: 10px; /* Espaciado inferior */
+    border-radius: 20px; /* Bordes redondos */
+    overflow: hidden; /* Evita que los elementos internos se salgan del contenedor */
+    width: fit-content; /* Ajusta el ancho del contenedor al contenido */
+    max-width: 100%; /* Ancho máximo igual al contenedor padre */
+    box-shadow: 0 4px 6px rgba(0, 0, 255, 0.1), 0 2px 4px rgba(0, 0, 255, 0.08); /* Efecto de sombra */
+}
+
+.input-group .form-control {
+    border-radius: 20px; /* Bordes redondos */
+    border-top-right-radius: 0; /* Borde superior derecho del input */
+    border-bottom-right-radius: 0; /* Borde inferior derecho del input */
+    box-shadow: none; /* Quita la sombra del input */
+}
+
+.input-group .btn {
+    border-radius: 20px; /* Bordes redondos */
+    border-top-left-radius: 0; /* Borde superior izquierdo del botón */
+    border-bottom-left-radius: 0; /* Borde inferior izquierdo del botón */
+    box-shadow: none; /* Quita la sombra del botón */
+}
+
+

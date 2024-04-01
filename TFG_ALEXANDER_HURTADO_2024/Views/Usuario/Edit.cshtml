@@ -1,0 +1,91 @@
+﻿@model DB.Models.Usuarios.Usuario
+
+@{
+    ViewBag.Title = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EditarStyle.css" />
+</header>
+
+@*<h2>Edit</h2>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!-- Añade aquí los campos correspondientes a la clase EMPLEADO -->
+    <h4>Editar usuario</h4>
+    <hr />
+
+    @Html.HiddenFor(model => model.PERSONA.Cedula)
+    @Html.HiddenFor(model => model.USUARIO.PrimerIngreso)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.USUARIO.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.USUARIO.Correo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.USUARIO.Correo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.USUARIO.Clave, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.USUARIO.Clave, new { htmlAttributes = new { @class = "form-control", type = "password", id = "Clave" } })
+            @Html.ValidationMessageFor(model => model.USUARIO.Clave, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if ((bool)ViewBag.MostrarClaveConfirmacion)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.USUARIO.ClaveConfirmacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USUARIO.ClaveConfirmacion, new { htmlAttributes = new { @class = "form-control", type = "password", id = "ConfirmarClave" } })
+                @Html.ValidationMessageFor(model => model.USUARIO.ClaveConfirmacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+
+    <script>
+        // Función para comparar las contraseñas
+        function compararContrasenas() {
+            var contrasena = document.getElementById("Clave").value;
+            var confirmarContrasena = document.getElementById("ConfirmarClave").value;
+
+            if (contrasena !== confirmarContrasena) {
+                // Si las contraseñas no coinciden, muestra un mensaje de error
+                document.getElementById("mensajeError").innerText = "Las contraseñas no coinciden";
+            } else {
+                // Si coinciden, borra el mensaje de error
+                document.getElementById("mensajeError").innerText = "";
+            }
+        }
+
+        // Agregar un evento onchange a ambos campos para llamar a la función de comparación
+        document.getElementById("Clave").onchange = compararContrasenas;
+        document.getElementById("ConfirmarClave").onchange = compararContrasenas;
+    </script>
+
+    <!-- Aquí se mostrará el mensaje de error -->
+    <p id="mensajeError" class="text-danger"></p>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+            @Html.ActionLink("Volver", "InformacionPersonal", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+
+</div>
+}
+
+
+@if (Session["Error"] != null)
+{
+    <script>NoSeElimino('@Session["Error"].ToString()');</script>
+}

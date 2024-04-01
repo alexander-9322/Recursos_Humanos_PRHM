@@ -1,0 +1,199 @@
+﻿@model DB.Models.evaluacion_remndimiento_colaborador
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/content/CreateStyle.css">
+    <style>
+
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .control-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 5px #007bff;
+            }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+            .btn-danger:hover,
+            .btn-success:hover {
+                opacity: 0.8;
+            }
+    </style>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Crear evaluación</h2>
+                </div>
+
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Evaluación del rendimiento del colaborador</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Id_Evaluacion, "Id evaluación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            
+                                @Html.EditorFor(model => model.Id_Evaluacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Id_Evaluacion, "", new { @class = "text-danger" })
+                           
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Conocimiento y habilidades específicas relacionadas con el trabajo:</label>
+                            @Html.EditorFor(model => model.Pregunta1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta1, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Capacidad para aplicar conocimientos técnicos en las tareas asignadas:</label>
+                            @Html.EditorFor(model => model.Pregunta2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta2, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label">Competencias técnicas:</label>
+                            @Html.EditorFor(model => model.Pregunta3, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta3, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Puntualidad:</label>
+                            @Html.EditorFor(model => model.Pregunta4, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta4, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label">Capacidad de trabajo en equipo:</label>
+                            @Html.EditorFor(model => model.Pregunta5, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta5, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label">Habilidad de resolver conflictos bajo presión:</label>
+                            @Html.EditorFor(model => model.Pregunta6, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta6, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label">Comunicación con los compañeros de trabajo:</label>
+                            @Html.EditorFor(model => model.Pregunta7, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta7, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Grado de autonomía en la toma de decisiones:</label>
+                            @Html.EditorFor(model => model.Pregunta8, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta8, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Capacidad para adaptarse a cambios en el entorno laboral:</label>
+                            @Html.EditorFor(model => model.Pregunta9, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta9, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Identificación y aportación de ideas innovadoras:</label>
+                            @Html.EditorFor(model => model.Pregunta10, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Pregunta10, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Retroalimentacion, "Retroalimentación", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @*<div class="col-md-10">*@
+                                @Html.EditorFor(model => model.Retroalimentacion, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Retroalimentacion, "", new { @class = "text-danger" })
+                            @*</div>*@
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Empleados_Id_Empleado, "Id empleados", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @*<div class="col-md-10">*@
+                                @Html.DropDownList("Empleados_Id_Empleado", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Empleados_Id_Empleado, "", new { @class = "text-danger" })
+                            @*</div>*@
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Crear" class="btn btn-success" />
+                                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Session["Error"] != null)
+{
+    <script>NoSeElimino('@Session["Error"].ToString()');</script>
+}

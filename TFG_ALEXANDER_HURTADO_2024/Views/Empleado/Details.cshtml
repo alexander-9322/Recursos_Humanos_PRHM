@@ -1,0 +1,139 @@
+﻿@model DB.Models.EMPLEADO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin-top: -200px;
+    }
+
+    .panel {
+        width: 400px;
+        border: 2px solid #5bc0de;
+        border-radius: 8px;
+        margin-top: 50px;
+    }
+
+    .panel-heading {
+        background-color: #5bc0de;
+        border-bottom: 2px solid #5bc0de;
+        border-radius: 6px 6px 0 0;
+    }
+
+    .panel-body {
+        padding: 20px;
+        background-color: #f0f0f0; /* Fondo gris */
+    }
+
+    .dl-horizontal dt {
+        float: left;
+        width: 160px;
+        overflow: hidden;
+        clear: left;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+
+    .btn-default {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+        color: #fff;
+    }
+
+        .btn-default:hover {
+            background-color: #4da2c1;
+            border-color: #4da2c1;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Detalles de Empleado</h2>
+                    <div class="panel-body">
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Fecha_Ingreso)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Fecha_Ingreso)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Salario)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Salario)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Id_Administrador)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Id_Administrador)
+                            </dd>
+
+                            @*<dt>
+                @Html.DisplayNameFor(model => model.EMPLEADOS1.Id_Empleados)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EMPLEADOS1.Id_Empleados)
+            </dd>*@
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EMPLEADO1.Id_Empleados)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.EMPLEADO1.Id_Empleados)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.PERSONA.Nombre)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.PERSONA.Nombre)
+                            </dd>
+                            <dt>
+                                Cédula
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.PERSONA.Cedula)
+                            </dd>
+                        </dl>
+                        <div>
+                            <div class="panel-footer text-center">
+                                @Html.ActionLink("Editar", "Edit", new { id = Model.Cedula }, new { @class = "btn btn-default" }) |
+                                @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

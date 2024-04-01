@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DB.Models.provincia>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-left mb-4">Lista de Provincias</h2>
+            <hr />
+            <div class="text-left mb-4 ml-0">
+                @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+                <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row mb-3">
+        <div class="col-md-6">
+            <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+        </div>
+    </div>*@
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Provincia</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.idProvincia }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.idProvincia }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.idProvincia }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    generarPDF('Provincias.pdf');
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

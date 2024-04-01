@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DB.Models.incapacidade>
+
+@{
+    ViewBag.Title = "Incapacidad Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<h2 class="text-left mb-4">Incapacidad</h2>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Fecha de inicio</th>
+                    <th class="text-center">Fecha fin</th>
+                    <th class="text-center">Monto incapacidad</th>
+                    <th class="text-center">Descripción</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Fecha_Inicio)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Fecha_Fin)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Monto_Incapacidad)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.catalogo_tipo_incapacidades.Descripcion)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No hay datos disponibles</td>
+                    </tr>
+                }
+                
+
+            </tbody>
+        </table>
+</div>
+<script>
+    generarPDF('Incapacidad_Personal.pdf');
+
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DB.Models.Cruds.Planilla>
+
+@{
+    ViewBag.Title = "Planilla Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<h2 class="text-left mb-4">Planilla Personal</h2>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        @if (Model.Any())
+        {
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Fecha</th>
+                    <th class="text-center">Horas laborales</th>
+                    <th class="text-center">Tatal neto</th>
+                    <th class="text-center">Impuestos aplicados</th>
+                    <th class="text-center">Nombre</th>
+                </tr>
+            </thead>
+        }
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Fecha)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Horas_Laboradas)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Total_Neto)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_HorasExtra)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    generarPDF('Planilla_Personal.pdf');
+
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

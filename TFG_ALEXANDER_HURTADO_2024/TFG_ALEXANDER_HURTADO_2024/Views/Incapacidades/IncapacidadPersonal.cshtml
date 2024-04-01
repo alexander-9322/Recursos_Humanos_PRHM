@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DB.Models.incapacidade>
+
+@{
+    ViewBag.Title = "Incapacidad Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<h2 class="text-left mb-4">Incapacidad Personal</h2>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        @if (Model.Any())
+        {
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.Fecha_Inicio)</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.Fecha_Fin)</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.Monto_Incapacidad)</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.catalogo_tipo_incapacidades.Descripcion)</th>
+                </tr>
+            </thead>
+        }
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Fecha_Inicio)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Fecha_Fin)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Monto_Incapacidad)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.catalogo_tipo_incapacidades.Descripcion)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    generarPDF('Incapacidad_Personal.pdf');
+
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<DB.Models.distrito>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/DataTableStyle.css" />
+    <link href="#" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+</head>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-left mb-4">Distrito</h2>
+            <p>
+                @Html.ActionLink("Crer nuevo", "Create", null, new { @class = "btn btn-success" })
+                <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <hr />
+
+    <div class="table-responsive">
+        <table id="distritoTable" class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center font-weight-bold">Distrito</th>
+                    <th class="text-center font-weight-bold">Cantón</th>
+                    <th class="text-center font-weight-bold">Provincia</th>
+                    <th class="text-center font-weight-bold">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.canton.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.canton.provincia.Descripcion)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.idDistrito, idCanton = item.Canton_idCanton, idProvincia = item.Canton_Provincia_idProvincia }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.idDistrito, idCanton = item.Canton_idCanton, idProvincia = item.Canton_Provincia_idProvincia }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.idDistrito, idCanton = item.Canton_idCanton, idProvincia = item.Canton_Provincia_idProvincia }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#distritoTable').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                "language": {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+<script>
+    generarPDF('Distritos.pdf');
+</script>
+
+@if (Session["Error"] != null)
+{
+    <script>
+        NoSeElimino('@Session["Error"].ToString()');
+    </script>
+}

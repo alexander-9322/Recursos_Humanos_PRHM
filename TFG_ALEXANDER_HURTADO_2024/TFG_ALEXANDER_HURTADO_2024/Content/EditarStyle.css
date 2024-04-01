@@ -1,0 +1,24 @@
+﻿.form-horizontal {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #5bc0de;
+    border-radius: 8px;
+    margin-top: 50px;
+    background-color: #f0f0f0; /* Color de fondo gris */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-default {
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+    color: #fff;
+}
+
+    .btn-default:hover {
+        background-color: #4da2c1;
+        border-color: #4da2c1;
+    }

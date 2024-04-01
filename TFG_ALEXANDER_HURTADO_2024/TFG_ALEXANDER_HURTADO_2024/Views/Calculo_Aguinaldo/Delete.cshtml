@@ -1,0 +1,159 @@
+﻿@model DB.Models.calculo_aguinaldo
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin-top: -150px;
+    }
+
+    .alert-container {
+        width: 400px; /* Mismo ancho que el panel */
+        margin-top: -20px; /* Ajusta según tus necesidades */
+    }
+
+    .panel {
+        width: 400px;
+        border: 2px solid #5bc0de;
+        border-radius: 8px;
+        margin-top: 50px;
+    }
+
+    .panel-heading {
+        background-color: #5bc0de;
+        border-bottom: 2px solid #5bc0de;
+        border-radius: 6px 6px 0 0;
+    }
+
+    .panel-body {
+        padding: 20px;
+        background-color: #f0f0f0; /* Fondo gris */
+    }
+
+    .dl-horizontal dt {
+        float: left;
+        width: 160px;
+        overflow: hidden;
+        clear: left;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+
+    .btn-default {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+        color: #fff;
+    }
+
+        .btn-default:hover {
+            background-color: #4da2c1;
+            border-color: #4da2c1;
+        }
+    dl.dl-horizontal dt {
+        width: 40%; /* Ancho para las etiquetas de descripción */
+        float: left;
+        clear: left;
+        text-align: left; /* Alineación a la izquierda para las etiquetas de descripción */
+        margin-right: 10px;
+    }
+
+    dl.dl-horizontal dd {
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-bottom: 10px; /* Espaciado entre elementos */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="alert-container">
+                <div class="alert alert-warning">
+                    <strong>Atención:</strong> Si eliminas este cálculo de aguinaldo no podras recuperarla.
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Eliminar cálculo de aguinaldo</h2>
+                </div>
+
+                <div class="panel-body">
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Año
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Año)
+                        </dd>
+
+                        <dt>
+                            Días laborados
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Dias_Trabajados)
+                        </dd>
+
+                        <dt>
+                            Total salarios
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Total_Salarios)
+                        </dd>
+
+                        <dt>
+                            Aguinaldo
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Aguinaldo)
+                        </dd>
+
+                        <dt>
+                            Id empleado
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Empleados_Id_Empleado)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                    }
+
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color text-center" style="margin-top: -20px;">
+                        <input type="submit" value="Eliminar" class="btn btn-primary" /> |
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                        <hr />
+                    </div>
+                }
+                
+
+            </div>
+            </div>
+        </div>
+    </div>

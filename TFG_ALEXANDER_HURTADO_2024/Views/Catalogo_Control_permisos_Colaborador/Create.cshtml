@@ -1,0 +1,64 @@
+﻿@model DB.Models.catalogo_control_permisos_colaborador
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/content/CreateStyle.css">
+</header>
+
+<style>
+    .control-label 
+    {
+        white-space:nowrap;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Crear nuevo</h2>
+                </div>
+
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>Catálago permisos del colaborador</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idCatalogo_Control_permisos_Colaborador,"Id control de permisos del colaborador", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.idCatalogo_Control_permisos_Colaborador, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el Id del catálogo de permisos" } })
+                                    @Html.ValidationMessageFor(model => model.idCatalogo_Control_permisos_Colaborador, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese la descripción" } })
+                                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Crear" class="btn btn-primary" />
+                                    @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

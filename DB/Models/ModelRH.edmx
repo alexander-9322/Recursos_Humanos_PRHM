@@ -1,0 +1,1411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PRHM_INSTALACIONES_RHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aprobaciones">
+          <Key>
+            <PropertyRef Name="IdAprobaciones" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="IdAprobaciones" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Comentario" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Fecha_respuesta" Type="date" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="calculo_aguinaldo">
+          <Key>
+            <PropertyRef Name="Id_Aguinaldo" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Aguinaldo" Type="int" Nullable="false" />
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Dias_Trabajados" Type="int" Nullable="false" />
+          <Property Name="Total_Salarios" Type="decimal" Precision="30" Scale="2" Nullable="false" />
+          <Property Name="Aguinaldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="idCanton" />
+            <PropertyRef Name="Provincia_idProvincia" />
+          </Key>
+          <Property Name="idCanton" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Provincia_idProvincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalago_cedula">
+          <Key>
+            <PropertyRef Name="IdCatalago_Cedula" />
+          </Key>
+          <Property Name="IdCatalago_Cedula" Type="int" Nullable="false" />
+          <Property Name="Descripcion_Cedula" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalago_deducciones">
+          <Key>
+            <PropertyRef Name="idCatalago_Deducciones" />
+          </Key>
+          <Property Name="idCatalago_Deducciones" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="5" />
+        </EntityType>
+        <EntityType Name="catalago_desempeño">
+          <Key>
+            <PropertyRef Name="Id_Desempeño" />
+          </Key>
+          <Property Name="Id_Desempeño" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalago_tipo_horas_extras">
+          <Key>
+            <PropertyRef Name="Id_Hora_Extra" />
+          </Key>
+          <Property Name="Id_Hora_Extra" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Porcentaje" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="catalago_tipo_liquidacion">
+          <Key>
+            <PropertyRef Name="Id_Tipo_Liquidacion" />
+          </Key>
+          <Property Name="Id_Tipo_Liquidacion" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalogo_control_permisos_colaborador">
+          <Key>
+            <PropertyRef Name="idCatalogo_Control_permisos_Colaborador" />
+          </Key>
+          <Property Name="idCatalogo_Control_permisos_Colaborador" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalogo_tipo_incapacidades">
+          <Key>
+            <PropertyRef Name="idCatalogo_Tipo_Incapacidades" />
+          </Key>
+          <Property Name="idCatalogo_Tipo_Incapacidades" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Porcentaje" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="control_de_permiso_colaborador">
+          <Key>
+            <PropertyRef Name="Fecha_Solicitud" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Permiso" Type="int" Nullable="false" />
+          <Property Name="Fecha_Solicitud" Type="date" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="IdTipoPermiso" Type="int" Nullable="false" />
+          <Property Name="Abrobado" Type="bit" />
+        </EntityType>
+        <EntityType Name="detalles_liquidacion">
+          <Key>
+            <PropertyRef Name="Id_Detalle_Liquidacion" />
+          </Key>
+          <Property Name="Id_Detalle_Liquidacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Monto_Preaviso" Type="real" Nullable="false" />
+          <Property Name="Monto_Censantia" Type="real" Nullable="false" />
+          <Property Name="Monto_Vacaciones" Type="real" Nullable="false" />
+          <Property Name="Monto_Aguinaldo" Type="real" Nullable="false" />
+          <Property Name="Total_Liquidacion" Type="real" Nullable="false" />
+          <Property Name="Liquidacion_Id_Liquidacion" Type="int" Nullable="false" />
+          <Property Name="Liquidacion_Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalles_planilla">
+          <Key>
+            <PropertyRef Name="idDetalles_Planilla" />
+          </Key>
+          <Property Name="idDetalles_Planilla" Type="int" Nullable="false" />
+          <Property Name="Total_HorasExtra" Type="real" Nullable="false" />
+          <Property Name="Total_Incapacidades" Type="real" Nullable="false" />
+          <Property Name="Total_Deducciones" Type="real" Nullable="false" />
+          <Property Name="SubTotal" Type="real" Nullable="false" />
+          <Property Name="Planilla_Id_Planilla" Type="int" Nullable="false" />
+          <Property Name="Planilla_Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="direccion">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="Distrito_idDistrito" />
+            <PropertyRef Name="Distrito_Canton_idCanton" />
+            <PropertyRef Name="Distrito_Canton_Provincia_idProvincia" />
+            <PropertyRef Name="Persona_Cedula" />
+          </Key>
+          <Property Name="idDireccion" Type="int" Nullable="false" />
+          <Property Name="Otras_sennas" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Distrito_idDistrito" Type="int" Nullable="false" />
+          <Property Name="Distrito_Canton_idCanton" Type="int" Nullable="false" />
+          <Property Name="Distrito_Canton_Provincia_idProvincia" Type="int" Nullable="false" />
+          <Property Name="Persona_Cedula" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="Canton_idCanton" />
+            <PropertyRef Name="Canton_Provincia_idProvincia" />
+          </Key>
+          <Property Name="idDistrito" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Canton_idCanton" Type="int" Nullable="false" />
+          <Property Name="Canton_Provincia_idProvincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleados">
+          <Key>
+            <PropertyRef Name="Id_Empleado" />
+            <PropertyRef Name="Persona_Cedula" />
+          </Key>
+          <Property Name="Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="Fecha_Ingreso" Type="date" Nullable="false" />
+          <Property Name="Salario" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Persona_Cedula" Type="bigint" Nullable="false" />
+          <Property Name="Jefatura_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evaluacion_remndimiento_colaborador">
+          <Key>
+            <PropertyRef Name="Id_Evaluacion" />
+            <PropertyRef Name="Catalago_Desempeño_Id_Desempeño" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Evaluacion" Type="int" Nullable="false" />
+          <Property Name="Fecha_Evaluacion" Type="date" Nullable="false" />
+          <Property Name="Calificacion" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Retroalimentacion" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Catalago_Desempeño_Id_Desempeño" Type="int" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="horas_extras">
+          <Key>
+            <PropertyRef Name="Fecha_Horas_Trabajadas" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Horas" Type="int" Nullable="false" />
+          <Property Name="Cantidad_Horas_Extras" Type="int" Nullable="false" />
+          <Property Name="Fecha_Horas_Trabajadas" Type="date" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="Catalago_Tipo_Horas_Extras_Id_Hora_Extra" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="incapacidades">
+          <Key>
+            <PropertyRef Name="idIncapacidades" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="idIncapacidades" Type="int" Nullable="false" />
+          <Property Name="Fecha_Inicio" Type="date" Nullable="false" />
+          <Property Name="Fecha_Fin" Type="date" Nullable="false" />
+          <Property Name="Monto_Incapacidad" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="IdTipoIncapacidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="liquidacion">
+          <Key>
+            <PropertyRef Name="Id_Liquidacion" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Liquidacion" Type="int" Nullable="false" />
+          <Property Name="Fecha_salida" Type="date" Nullable="false" />
+          <Property Name="Dias_Preaviso" Type="int" Nullable="false" />
+          <Property Name="Id_Tipo_Liquidacion" Type="int" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion" Type="int" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Name="Cedula" Type="bigint" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apeliido1" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellido2" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="Fecha_Nacimiento" Type="date" Nullable="false" />
+          <Property Name="Catalago_Cedula_IdCatalago_Cedula" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="planilla">
+          <Key>
+            <PropertyRef Name="Id_Planilla" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Planilla" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Horas_Laboradas" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Catalago_Deducciones_idCatalago_Deducciones" Type="int" Nullable="false" />
+          <Property Name="Total_Neto" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="telefono">
+          <Key>
+            <PropertyRef Name="idTelefono" />
+            <PropertyRef Name="Persona_Cedula" />
+          </Key>
+          <Property Name="idTelefono" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Persona_Cedula" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Bloqueado" Type="bit" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+          <Property Name="PrimerIngreso" Type="bit" />
+        </EntityType>
+        <EntityType Name="vacaciones">
+          <Key>
+            <PropertyRef Name="Fecha_Inicio" />
+            <PropertyRef Name="Fecha_Fin" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Fecha_Inicio" Type="date" Nullable="false" />
+          <Property Name="Fecha_Fin" Type="date" Nullable="false" />
+          <Property Name="Cantidad_Dias" Type="int" Nullable="false" />
+          <Property Name="Aprobaciones_IdAprobaciones" Type="int" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="canton$fk_Canton_Provincia1">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="canton" Type="Self.canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="Provincia_idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="control_de_permiso_colaborador$fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1">
+          <End Role="catalogo_control_permisos_colaborador" Type="Self.catalogo_control_permisos_colaborador" Multiplicity="1" />
+          <End Role="control_de_permiso_colaborador" Type="Self.control_de_permiso_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogo_control_permisos_colaborador">
+              <PropertyRef Name="idCatalogo_Control_permisos_Colaborador" />
+            </Principal>
+            <Dependent Role="control_de_permiso_colaborador">
+              <PropertyRef Name="IdTipoPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalles_liquidacion$fk_Detalles_Liquidacion_Liquidacion1">
+          <End Role="liquidacion" Type="Self.liquidacion" Multiplicity="1" />
+          <End Role="detalles_liquidacion" Type="Self.detalles_liquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="liquidacion">
+              <PropertyRef Name="Id_Liquidacion" />
+              <PropertyRef Name="Empleados_Id_Empleado" />
+            </Principal>
+            <Dependent Role="detalles_liquidacion">
+              <PropertyRef Name="Liquidacion_Id_Liquidacion" />
+              <PropertyRef Name="Liquidacion_Empleados_Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalles_planilla$fk_Detalles_Planilla_Planilla1">
+          <End Role="planilla" Type="Self.planilla" Multiplicity="1" />
+          <End Role="detalles_planilla" Type="Self.detalles_planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="planilla">
+              <PropertyRef Name="Id_Planilla" />
+              <PropertyRef Name="Empleados_Id_Empleado" />
+            </Principal>
+            <Dependent Role="detalles_planilla">
+              <PropertyRef Name="Planilla_Id_Planilla" />
+              <PropertyRef Name="Planilla_Empleados_Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direccion$fk_Direccion_Distrito1">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="idDistrito" />
+              <PropertyRef Name="Canton_idCanton" />
+              <PropertyRef Name="Canton_Provincia_idProvincia" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="Distrito_idDistrito" />
+              <PropertyRef Name="Distrito_Canton_idCanton" />
+              <PropertyRef Name="Distrito_Canton_Provincia_idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direccion$fk_Direccion_Persona1">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="Persona_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="distrito$fk_Distrito_Canton1">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="idCanton" />
+              <PropertyRef Name="Provincia_idProvincia" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="Canton_idCanton" />
+              <PropertyRef Name="Canton_Provincia_idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="empleados$fk_Empleados_Persona1">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="empleados" Type="Self.empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="empleados">
+              <PropertyRef Name="Persona_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evaluacion_remndimiento_colaborador$fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1">
+          <End Role="catalago_desempeño" Type="Self.catalago_desempeño" Multiplicity="1" />
+          <End Role="evaluacion_remndimiento_colaborador" Type="Self.evaluacion_remndimiento_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_desempeño">
+              <PropertyRef Name="Id_Desempeño" />
+            </Principal>
+            <Dependent Role="evaluacion_remndimiento_colaborador">
+              <PropertyRef Name="Catalago_Desempeño_Id_Desempeño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horas_extras$fk_Horas_Extras_Catalago_Tipo_Horas_Extras1">
+          <End Role="catalago_tipo_horas_extras" Type="Self.catalago_tipo_horas_extras" Multiplicity="1" />
+          <End Role="horas_extras" Type="Self.horas_extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_tipo_horas_extras">
+              <PropertyRef Name="Id_Hora_Extra" />
+            </Principal>
+            <Dependent Role="horas_extras">
+              <PropertyRef Name="Catalago_Tipo_Horas_Extras_Id_Hora_Extra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="incapacidades$fk_Incapacidades_Catalogo_Tipo_Incapacidades1">
+          <End Role="catalogo_tipo_incapacidades" Type="Self.catalogo_tipo_incapacidades" Multiplicity="1" />
+          <End Role="incapacidades" Type="Self.incapacidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogo_tipo_incapacidades">
+              <PropertyRef Name="idCatalogo_Tipo_Incapacidades" />
+            </Principal>
+            <Dependent Role="incapacidades">
+              <PropertyRef Name="IdTipoIncapacidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="liquidacion$fk_Liquidacion_Catalago_Tipo_Liquidacion1">
+          <End Role="catalago_tipo_liquidacion" Type="Self.catalago_tipo_liquidacion" Multiplicity="1" />
+          <End Role="liquidacion" Type="Self.liquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_tipo_liquidacion">
+              <PropertyRef Name="Id_Tipo_Liquidacion" />
+            </Principal>
+            <Dependent Role="liquidacion">
+              <PropertyRef Name="Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="persona$fk_Persona_Catalago_Cedula1">
+          <End Role="catalago_cedula" Type="Self.catalago_cedula" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_cedula">
+              <PropertyRef Name="IdCatalago_Cedula" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="Catalago_Cedula_IdCatalago_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="telefono$fk_Telefono_Persona1">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="telefono">
+              <PropertyRef Name="Persona_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRHM_INSTALACIONES_RHModelStoreContainer">
+          <EntitySet Name="aprobaciones" EntityType="Self.aprobaciones" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="calculo_aguinaldo" EntityType="Self.calculo_aguinaldo" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="canton" EntityType="Self.canton" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalago_cedula" EntityType="Self.catalago_cedula" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalago_deducciones" EntityType="Self.catalago_deducciones" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalago_desempeño" EntityType="Self.catalago_desempeño" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalago_tipo_horas_extras" EntityType="Self.catalago_tipo_horas_extras" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalago_tipo_liquidacion" EntityType="Self.catalago_tipo_liquidacion" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalogo_control_permisos_colaborador" EntityType="Self.catalogo_control_permisos_colaborador" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="catalogo_tipo_incapacidades" EntityType="Self.catalogo_tipo_incapacidades" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="control_de_permiso_colaborador" EntityType="Self.control_de_permiso_colaborador" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="detalles_liquidacion" EntityType="Self.detalles_liquidacion" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="detalles_planilla" EntityType="Self.detalles_planilla" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="direccion" EntityType="Self.direccion" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="distrito" EntityType="Self.distrito" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="empleados" EntityType="Self.empleados" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="evaluacion_remndimiento_colaborador" EntityType="Self.evaluacion_remndimiento_colaborador" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="horas_extras" EntityType="Self.horas_extras" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="incapacidades" EntityType="Self.incapacidades" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="liquidacion" EntityType="Self.liquidacion" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="persona" EntityType="Self.persona" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="planilla" EntityType="Self.planilla" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="provincia" EntityType="Self.provincia" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="telefono" EntityType="Self.telefono" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <EntitySet Name="vacaciones" EntityType="Self.vacaciones" Schema="prhm_instalaciones_rh" store:Type="Tables" />
+          <AssociationSet Name="canton$fk_Canton_Provincia1" Association="Self.canton$fk_Canton_Provincia1">
+            <End Role="provincia" EntitySet="provincia" />
+            <End Role="canton" EntitySet="canton" />
+          </AssociationSet>
+          <AssociationSet Name="control_de_permiso_colaborador$fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1" Association="Self.control_de_permiso_colaborador$fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1">
+            <End Role="catalogo_control_permisos_colaborador" EntitySet="catalogo_control_permisos_colaborador" />
+            <End Role="control_de_permiso_colaborador" EntitySet="control_de_permiso_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="detalles_liquidacion$fk_Detalles_Liquidacion_Liquidacion1" Association="Self.detalles_liquidacion$fk_Detalles_Liquidacion_Liquidacion1">
+            <End Role="liquidacion" EntitySet="liquidacion" />
+            <End Role="detalles_liquidacion" EntitySet="detalles_liquidacion" />
+          </AssociationSet>
+          <AssociationSet Name="detalles_planilla$fk_Detalles_Planilla_Planilla1" Association="Self.detalles_planilla$fk_Detalles_Planilla_Planilla1">
+            <End Role="planilla" EntitySet="planilla" />
+            <End Role="detalles_planilla" EntitySet="detalles_planilla" />
+          </AssociationSet>
+          <AssociationSet Name="direccion$fk_Direccion_Distrito1" Association="Self.direccion$fk_Direccion_Distrito1">
+            <End Role="distrito" EntitySet="distrito" />
+            <End Role="direccion" EntitySet="direccion" />
+          </AssociationSet>
+          <AssociationSet Name="direccion$fk_Direccion_Persona1" Association="Self.direccion$fk_Direccion_Persona1">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="direccion" EntitySet="direccion" />
+          </AssociationSet>
+          <AssociationSet Name="distrito$fk_Distrito_Canton1" Association="Self.distrito$fk_Distrito_Canton1">
+            <End Role="canton" EntitySet="canton" />
+            <End Role="distrito" EntitySet="distrito" />
+          </AssociationSet>
+          <AssociationSet Name="empleados$fk_Empleados_Persona1" Association="Self.empleados$fk_Empleados_Persona1">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="empleados" EntitySet="empleados" />
+          </AssociationSet>
+          <AssociationSet Name="evaluacion_remndimiento_colaborador$fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1" Association="Self.evaluacion_remndimiento_colaborador$fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1">
+            <End Role="catalago_desempeño" EntitySet="catalago_desempeño" />
+            <End Role="evaluacion_remndimiento_colaborador" EntitySet="evaluacion_remndimiento_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="horas_extras$fk_Horas_Extras_Catalago_Tipo_Horas_Extras1" Association="Self.horas_extras$fk_Horas_Extras_Catalago_Tipo_Horas_Extras1">
+            <End Role="catalago_tipo_horas_extras" EntitySet="catalago_tipo_horas_extras" />
+            <End Role="horas_extras" EntitySet="horas_extras" />
+          </AssociationSet>
+          <AssociationSet Name="incapacidades$fk_Incapacidades_Catalogo_Tipo_Incapacidades1" Association="Self.incapacidades$fk_Incapacidades_Catalogo_Tipo_Incapacidades1">
+            <End Role="catalogo_tipo_incapacidades" EntitySet="catalogo_tipo_incapacidades" />
+            <End Role="incapacidades" EntitySet="incapacidades" />
+          </AssociationSet>
+          <AssociationSet Name="liquidacion$fk_Liquidacion_Catalago_Tipo_Liquidacion1" Association="Self.liquidacion$fk_Liquidacion_Catalago_Tipo_Liquidacion1">
+            <End Role="catalago_tipo_liquidacion" EntitySet="catalago_tipo_liquidacion" />
+            <End Role="liquidacion" EntitySet="liquidacion" />
+          </AssociationSet>
+          <AssociationSet Name="persona$fk_Persona_Catalago_Cedula1" Association="Self.persona$fk_Persona_Catalago_Cedula1">
+            <End Role="catalago_cedula" EntitySet="catalago_cedula" />
+            <End Role="persona" EntitySet="persona" />
+          </AssociationSet>
+          <AssociationSet Name="telefono$fk_Telefono_Persona1" Association="Self.telefono$fk_Telefono_Persona1">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="telefono" EntitySet="telefono" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRHM_INSTALACIONES_RHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="aprobacione">
+          <Key>
+            <PropertyRef Name="IdAprobaciones" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="IdAprobaciones" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha_respuesta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="calculo_aguinaldo">
+          <Key>
+            <PropertyRef Name="Id_Aguinaldo" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Aguinaldo" Type="Int32" Nullable="false" />
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Dias_Trabajados" Type="Int32" Nullable="false" />
+          <Property Name="Total_Salarios" Type="Decimal" Precision="30" Scale="2" Nullable="false" />
+          <Property Name="Aguinaldo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="canton">
+          <Key>
+            <PropertyRef Name="idCanton" />
+            <PropertyRef Name="Provincia_idProvincia" />
+          </Key>
+          <Property Name="idCanton" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Provincia_idProvincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="provincia" Relationship="Self.canton_fk_Canton_Provincia1" FromRole="canton" ToRole="provincia" />
+          <NavigationProperty Name="distritoes" Relationship="Self.distrito_fk_Distrito_Canton1" FromRole="canton" ToRole="distrito" />
+        </EntityType>
+        <EntityType Name="catalago_cedula">
+          <Key>
+            <PropertyRef Name="IdCatalago_Cedula" />
+          </Key>
+          <Property Name="IdCatalago_Cedula" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion_Cedula" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="personas" Relationship="Self.persona_fk_Persona_Catalago_Cedula1" FromRole="catalago_cedula" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="catalago_desempeño">
+          <Key>
+            <PropertyRef Name="Id_Desempeño" />
+          </Key>
+          <Property Name="Id_Desempeño" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="evaluacion_remndimiento_colaborador" Relationship="Self.evaluacion_remndimiento_colaborador_fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1" FromRole="catalago_desempeño" ToRole="evaluacion_remndimiento_colaborador" />
+        </EntityType>
+        <EntityType Name="catalago_tipo_horas_extras">
+          <Key>
+            <PropertyRef Name="Id_Hora_Extra" />
+          </Key>
+          <Property Name="Id_Hora_Extra" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Porcentaje" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="horas_extras" Relationship="Self.horas_extras_fk_Horas_Extras_Catalago_Tipo_Horas_Extras1" FromRole="catalago_tipo_horas_extras" ToRole="horas_extras" />
+        </EntityType>
+        <EntityType Name="catalago_tipo_liquidacion">
+          <Key>
+            <PropertyRef Name="Id_Tipo_Liquidacion" />
+          </Key>
+          <Property Name="Id_Tipo_Liquidacion" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="liquidacions" Relationship="Self.liquidacion_fk_Liquidacion_Catalago_Tipo_Liquidacion1" FromRole="catalago_tipo_liquidacion" ToRole="liquidacion" />
+        </EntityType>
+        <EntityType Name="catalogo_control_permisos_colaborador">
+          <Key>
+            <PropertyRef Name="idCatalogo_Control_permisos_Colaborador" />
+          </Key>
+          <Property Name="idCatalogo_Control_permisos_Colaborador" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="control_de_permiso_colaborador" Relationship="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador_fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1" FromRole="catalogo_control_permisos_colaborador" ToRole="control_de_permiso_colaborador" />
+        </EntityType>
+        <EntityType Name="catalogo_tipo_incapacidades">
+          <Key>
+            <PropertyRef Name="idCatalogo_Tipo_Incapacidades" />
+          </Key>
+          <Property Name="idCatalogo_Tipo_Incapacidades" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Porcentaje" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="incapacidades" Relationship="Self.incapacidades_fk_Incapacidades_Catalogo_Tipo_Incapacidades1" FromRole="catalogo_tipo_incapacidades" ToRole="incapacidades" />
+        </EntityType>
+        <EntityType Name="detalles_liquidacion">
+          <Key>
+            <PropertyRef Name="Id_Detalle_Liquidacion" />
+          </Key>
+          <Property Name="Id_Detalle_Liquidacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Monto_Preaviso" Type="Single" Nullable="false" />
+          <Property Name="Monto_Censantia" Type="Single" Nullable="false" />
+          <Property Name="Monto_Vacaciones" Type="Single" Nullable="false" />
+          <Property Name="Monto_Aguinaldo" Type="Single" Nullable="false" />
+          <Property Name="Total_Liquidacion" Type="Single" Nullable="false" />
+          <Property Name="Liquidacion_Id_Liquidacion" Type="Int32" Nullable="false" />
+          <Property Name="Liquidacion_Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="liquidacion" Relationship="Self.detalles_liquidacion_fk_Detalles_Liquidacion_Liquidacion1" FromRole="detalles_liquidacion" ToRole="liquidacion" />
+        </EntityType>
+        <EntityType Name="detalles_planilla">
+          <Key>
+            <PropertyRef Name="idDetalles_Planilla" />
+          </Key>
+          <Property Name="idDetalles_Planilla" Type="Int32" Nullable="false" />
+          <Property Name="Total_HorasExtra" Type="Single" Nullable="false" />
+          <Property Name="Total_Incapacidades" Type="Single" Nullable="false" />
+          <Property Name="Total_Deducciones" Type="Single" Nullable="false" />
+          <Property Name="SubTotal" Type="Single" Nullable="false" />
+          <Property Name="Planilla_Id_Planilla" Type="Int32" Nullable="false" />
+          <Property Name="Planilla_Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="planilla" Relationship="Self.detalles_planilla_fk_Detalles_Planilla_Planilla1" FromRole="detalles_planilla" ToRole="planilla" />
+        </EntityType>
+        <EntityType Name="direccion">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+            <PropertyRef Name="Distrito_idDistrito" />
+            <PropertyRef Name="Distrito_Canton_idCanton" />
+            <PropertyRef Name="Distrito_Canton_Provincia_idProvincia" />
+            <PropertyRef Name="Persona_Cedula" />
+          </Key>
+          <Property Name="idDireccion" Type="Int32" Nullable="false" />
+          <Property Name="Otras_sennas" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Distrito_idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="Distrito_Canton_idCanton" Type="Int32" Nullable="false" />
+          <Property Name="Distrito_Canton_Provincia_idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="Persona_Cedula" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="distrito" Relationship="Self.direccion_fk_Direccion_Distrito1" FromRole="direccion" ToRole="distrito" />
+          <NavigationProperty Name="persona" Relationship="Self.direccion_fk_Direccion_Persona1" FromRole="direccion" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="distrito">
+          <Key>
+            <PropertyRef Name="idDistrito" />
+            <PropertyRef Name="Canton_idCanton" />
+            <PropertyRef Name="Canton_Provincia_idProvincia" />
+          </Key>
+          <Property Name="idDistrito" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Canton_idCanton" Type="Int32" Nullable="false" />
+          <Property Name="Canton_Provincia_idProvincia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="canton" Relationship="Self.distrito_fk_Distrito_Canton1" FromRole="distrito" ToRole="canton" />
+          <NavigationProperty Name="direccions" Relationship="Self.direccion_fk_Direccion_Distrito1" FromRole="distrito" ToRole="direccion" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="Id_Empleado" />
+            <PropertyRef Name="Persona_Cedula" />
+          </Key>
+          <Property Name="Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Ingreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Salario" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Persona_Cedula" Type="Int64" Nullable="false" />
+          <Property Name="Jefatura_Id_Empleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.empleados_fk_Empleados_Persona1" FromRole="empleados" ToRole="persona" />
+        </EntityType>
+        <EntityType Name="evaluacion_remndimiento_colaborador">
+          <Key>
+            <PropertyRef Name="Id_Evaluacion" />
+            <PropertyRef Name="Catalago_Desempeño_Id_Desempeño" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Evaluacion" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Evaluacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Calificacion" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Retroalimentacion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Catalago_Desempeño_Id_Desempeño" Type="Int32" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalago_desempeño" Relationship="Self.evaluacion_remndimiento_colaborador_fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1" FromRole="evaluacion_remndimiento_colaborador" ToRole="catalago_desempeño" />
+        </EntityType>
+        <EntityType Name="horas_extras">
+          <Key>
+            <PropertyRef Name="Fecha_Horas_Trabajadas" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Horas" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad_Horas_Extras" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Horas_Trabajadas" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="Catalago_Tipo_Horas_Extras_Id_Hora_Extra" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Single" Nullable="false" />
+          <NavigationProperty Name="catalago_tipo_horas_extras" Relationship="Self.horas_extras_fk_Horas_Extras_Catalago_Tipo_Horas_Extras1" FromRole="horas_extras" ToRole="catalago_tipo_horas_extras" />
+        </EntityType>
+        <EntityType Name="incapacidade">
+          <Key>
+            <PropertyRef Name="idIncapacidades" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="idIncapacidades" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Monto_Incapacidad" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoIncapacidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalogo_tipo_incapacidades" Relationship="Self.incapacidades_fk_Incapacidades_Catalogo_Tipo_Incapacidades1" FromRole="incapacidades" ToRole="catalogo_tipo_incapacidades" />
+        </EntityType>
+        <EntityType Name="liquidacion">
+          <Key>
+            <PropertyRef Name="Id_Liquidacion" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Liquidacion" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_salida" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Dias_Preaviso" Type="Int32" Nullable="false" />
+          <Property Name="Id_Tipo_Liquidacion" Type="Int32" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion" Type="Int32" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="catalago_tipo_liquidacion" Relationship="Self.liquidacion_fk_Liquidacion_Catalago_Tipo_Liquidacion1" FromRole="liquidacion" ToRole="catalago_tipo_liquidacion" />
+          <NavigationProperty Name="detalles_liquidacion" Relationship="Self.detalles_liquidacion_fk_Detalles_Liquidacion_Liquidacion1" FromRole="liquidacion" ToRole="detalles_liquidacion" />
+        </EntityType>
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="Cedula" />
+          </Key>
+          <Property Name="Cedula" Type="Int64" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apeliido1" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fecha_Nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Catalago_Cedula_IdCatalago_Cedula" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalago_cedula" Relationship="Self.persona_fk_Persona_Catalago_Cedula1" FromRole="persona" ToRole="catalago_cedula" />
+          <NavigationProperty Name="direccions" Relationship="Self.direccion_fk_Direccion_Persona1" FromRole="persona" ToRole="direccion" />
+          <NavigationProperty Name="empleados" Relationship="Self.empleados_fk_Empleados_Persona1" FromRole="persona" ToRole="empleados" />
+          <NavigationProperty Name="telefonoes" Relationship="PRHM_INSTALACIONES_RHModel.telefono_fk_Telefono_Persona1" FromRole="persona" ToRole="telefono" />
+        </EntityType>
+        <EntityType Name="planilla">
+          <Key>
+            <PropertyRef Name="Id_Planilla" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Planilla" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Horas_Laboradas" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Catalago_Deducciones_idCatalago_Deducciones" Type="Int32" Nullable="false" />
+          <Property Name="Total_Neto" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="detalles_planilla" Relationship="Self.detalles_planilla_fk_Detalles_Planilla_Planilla1" FromRole="planilla" ToRole="detalles_planilla" />
+        </EntityType>
+        <EntityType Name="provincia">
+          <Key>
+            <PropertyRef Name="idProvincia" />
+          </Key>
+          <Property Name="idProvincia" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="cantons" Relationship="Self.canton_fk_Canton_Provincia1" FromRole="provincia" ToRole="canton" />
+        </EntityType>
+        <EntityType Name="vacacione">
+          <Key>
+            <PropertyRef Name="Fecha_Inicio" />
+            <PropertyRef Name="Fecha_Fin" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cantidad_Dias" Type="Int32" Nullable="false" />
+          <Property Name="Aprobaciones_IdAprobaciones" Type="Int32" Nullable="false" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="canton_fk_Canton_Provincia1">
+          <End Role="provincia" Type="Self.provincia" Multiplicity="1" />
+          <End Role="canton" Type="Self.canton" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provincia">
+              <PropertyRef Name="idProvincia" />
+            </Principal>
+            <Dependent Role="canton">
+              <PropertyRef Name="Provincia_idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="distrito_fk_Distrito_Canton1">
+          <End Role="canton" Type="Self.canton" Multiplicity="1" />
+          <End Role="distrito" Type="Self.distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="canton">
+              <PropertyRef Name="idCanton" />
+              <PropertyRef Name="Provincia_idProvincia" />
+            </Principal>
+            <Dependent Role="distrito">
+              <PropertyRef Name="Canton_idCanton" />
+              <PropertyRef Name="Canton_Provincia_idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="persona_fk_Persona_Catalago_Cedula1">
+          <End Role="catalago_cedula" Type="Self.catalago_cedula" Multiplicity="1" />
+          <End Role="persona" Type="Self.persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_cedula">
+              <PropertyRef Name="IdCatalago_Cedula" />
+            </Principal>
+            <Dependent Role="persona">
+              <PropertyRef Name="Catalago_Cedula_IdCatalago_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="evaluacion_remndimiento_colaborador_fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1">
+          <End Role="catalago_desempeño" Type="Self.catalago_desempeño" Multiplicity="1" />
+          <End Role="evaluacion_remndimiento_colaborador" Type="Self.evaluacion_remndimiento_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_desempeño">
+              <PropertyRef Name="Id_Desempeño" />
+            </Principal>
+            <Dependent Role="evaluacion_remndimiento_colaborador">
+              <PropertyRef Name="Catalago_Desempeño_Id_Desempeño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="horas_extras_fk_Horas_Extras_Catalago_Tipo_Horas_Extras1">
+          <End Role="catalago_tipo_horas_extras" Type="Self.catalago_tipo_horas_extras" Multiplicity="1" />
+          <End Role="horas_extras" Type="Self.horas_extras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_tipo_horas_extras">
+              <PropertyRef Name="Id_Hora_Extra" />
+            </Principal>
+            <Dependent Role="horas_extras">
+              <PropertyRef Name="Catalago_Tipo_Horas_Extras_Id_Hora_Extra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="liquidacion_fk_Liquidacion_Catalago_Tipo_Liquidacion1">
+          <End Role="catalago_tipo_liquidacion" Type="Self.catalago_tipo_liquidacion" Multiplicity="1" />
+          <End Role="liquidacion" Type="Self.liquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalago_tipo_liquidacion">
+              <PropertyRef Name="Id_Tipo_Liquidacion" />
+            </Principal>
+            <Dependent Role="liquidacion">
+              <PropertyRef Name="Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="incapacidades_fk_Incapacidades_Catalogo_Tipo_Incapacidades1">
+          <End Role="catalogo_tipo_incapacidades" Type="Self.catalogo_tipo_incapacidades" Multiplicity="1" />
+          <End Role="incapacidades" Type="Self.incapacidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogo_tipo_incapacidades">
+              <PropertyRef Name="idCatalogo_Tipo_Incapacidades" />
+            </Principal>
+            <Dependent Role="incapacidades">
+              <PropertyRef Name="IdTipoIncapacidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalles_liquidacion_fk_Detalles_Liquidacion_Liquidacion1">
+          <End Role="liquidacion" Type="Self.liquidacion" Multiplicity="1" />
+          <End Role="detalles_liquidacion" Type="Self.detalles_liquidacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="liquidacion">
+              <PropertyRef Name="Id_Liquidacion" />
+              <PropertyRef Name="Empleados_Id_Empleado" />
+            </Principal>
+            <Dependent Role="detalles_liquidacion">
+              <PropertyRef Name="Liquidacion_Id_Liquidacion" />
+              <PropertyRef Name="Liquidacion_Empleados_Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="detalles_planilla_fk_Detalles_Planilla_Planilla1">
+          <End Role="planilla" Type="Self.planilla" Multiplicity="1" />
+          <End Role="detalles_planilla" Type="Self.detalles_planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="planilla">
+              <PropertyRef Name="Id_Planilla" />
+              <PropertyRef Name="Empleados_Id_Empleado" />
+            </Principal>
+            <Dependent Role="detalles_planilla">
+              <PropertyRef Name="Planilla_Id_Planilla" />
+              <PropertyRef Name="Planilla_Empleados_Id_Empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direccion_fk_Direccion_Distrito1">
+          <End Role="distrito" Type="Self.distrito" Multiplicity="1" />
+          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="distrito">
+              <PropertyRef Name="idDistrito" />
+              <PropertyRef Name="Canton_idCanton" />
+              <PropertyRef Name="Canton_Provincia_idProvincia" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="Distrito_idDistrito" />
+              <PropertyRef Name="Distrito_Canton_idCanton" />
+              <PropertyRef Name="Distrito_Canton_Provincia_idProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direccion_fk_Direccion_Persona1">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="direccion" Type="Self.direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="direccion">
+              <PropertyRef Name="Persona_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="empleados_fk_Empleados_Persona1">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="empleados" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="empleados">
+              <PropertyRef Name="Persona_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aprobaciones" EntityType="Self.aprobacione" />
+          <EntitySet Name="calculo_aguinaldo" EntityType="Self.calculo_aguinaldo" />
+          <EntitySet Name="cantons" EntityType="Self.canton" />
+          <EntitySet Name="catalago_cedula" EntityType="Self.catalago_cedula" />
+          <EntitySet Name="catalago_desempeño" EntityType="Self.catalago_desempeño" />
+          <EntitySet Name="catalago_tipo_horas_extras" EntityType="Self.catalago_tipo_horas_extras" />
+          <EntitySet Name="catalago_tipo_liquidacion" EntityType="Self.catalago_tipo_liquidacion" />
+          <EntitySet Name="catalogo_control_permisos_colaborador" EntityType="Self.catalogo_control_permisos_colaborador" />
+          <EntitySet Name="catalogo_tipo_incapacidades" EntityType="Self.catalogo_tipo_incapacidades" />
+          <EntitySet Name="detalles_liquidacion" EntityType="Self.detalles_liquidacion" />
+          <EntitySet Name="detalles_planilla" EntityType="Self.detalles_planilla" />
+          <EntitySet Name="direccions" EntityType="Self.direccion" />
+          <EntitySet Name="distritoes" EntityType="Self.distrito" />
+          <EntitySet Name="empleados" EntityType="Self.empleado" />
+          <EntitySet Name="evaluacion_remndimiento_colaborador" EntityType="Self.evaluacion_remndimiento_colaborador" />
+          <EntitySet Name="horas_extras" EntityType="Self.horas_extras" />
+          <EntitySet Name="incapacidades" EntityType="Self.incapacidade" />
+          <EntitySet Name="liquidacions" EntityType="Self.liquidacion" />
+          <EntitySet Name="personas" EntityType="Self.persona" />
+          <EntitySet Name="planillas" EntityType="Self.planilla" />
+          <EntitySet Name="provincias" EntityType="Self.provincia" />
+          <EntitySet Name="vacaciones" EntityType="Self.vacacione" />
+          <AssociationSet Name="canton_fk_Canton_Provincia1" Association="Self.canton_fk_Canton_Provincia1">
+            <End Role="provincia" EntitySet="provincias" />
+            <End Role="canton" EntitySet="cantons" />
+          </AssociationSet>
+          <AssociationSet Name="distrito_fk_Distrito_Canton1" Association="Self.distrito_fk_Distrito_Canton1">
+            <End Role="canton" EntitySet="cantons" />
+            <End Role="distrito" EntitySet="distritoes" />
+          </AssociationSet>
+          <AssociationSet Name="persona_fk_Persona_Catalago_Cedula1" Association="Self.persona_fk_Persona_Catalago_Cedula1">
+            <End Role="catalago_cedula" EntitySet="catalago_cedula" />
+            <End Role="persona" EntitySet="personas" />
+          </AssociationSet>
+          <AssociationSet Name="evaluacion_remndimiento_colaborador_fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1" Association="Self.evaluacion_remndimiento_colaborador_fk_Evaluacion_Remndimiento_Colaborador_Catalago_Desempeño1">
+            <End Role="catalago_desempeño" EntitySet="catalago_desempeño" />
+            <End Role="evaluacion_remndimiento_colaborador" EntitySet="evaluacion_remndimiento_colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="horas_extras_fk_Horas_Extras_Catalago_Tipo_Horas_Extras1" Association="Self.horas_extras_fk_Horas_Extras_Catalago_Tipo_Horas_Extras1">
+            <End Role="catalago_tipo_horas_extras" EntitySet="catalago_tipo_horas_extras" />
+            <End Role="horas_extras" EntitySet="horas_extras" />
+          </AssociationSet>
+          <AssociationSet Name="liquidacion_fk_Liquidacion_Catalago_Tipo_Liquidacion1" Association="Self.liquidacion_fk_Liquidacion_Catalago_Tipo_Liquidacion1">
+            <End Role="catalago_tipo_liquidacion" EntitySet="catalago_tipo_liquidacion" />
+            <End Role="liquidacion" EntitySet="liquidacions" />
+          </AssociationSet>
+          <AssociationSet Name="incapacidades_fk_Incapacidades_Catalogo_Tipo_Incapacidades1" Association="Self.incapacidades_fk_Incapacidades_Catalogo_Tipo_Incapacidades1">
+            <End Role="catalogo_tipo_incapacidades" EntitySet="catalogo_tipo_incapacidades" />
+            <End Role="incapacidades" EntitySet="incapacidades" />
+          </AssociationSet>
+          <AssociationSet Name="detalles_liquidacion_fk_Detalles_Liquidacion_Liquidacion1" Association="Self.detalles_liquidacion_fk_Detalles_Liquidacion_Liquidacion1">
+            <End Role="liquidacion" EntitySet="liquidacions" />
+            <End Role="detalles_liquidacion" EntitySet="detalles_liquidacion" />
+          </AssociationSet>
+          <AssociationSet Name="detalles_planilla_fk_Detalles_Planilla_Planilla1" Association="Self.detalles_planilla_fk_Detalles_Planilla_Planilla1">
+            <End Role="planilla" EntitySet="planillas" />
+            <End Role="detalles_planilla" EntitySet="detalles_planilla" />
+          </AssociationSet>
+          <AssociationSet Name="direccion_fk_Direccion_Distrito1" Association="Self.direccion_fk_Direccion_Distrito1">
+            <End Role="distrito" EntitySet="distritoes" />
+            <End Role="direccion" EntitySet="direccions" />
+          </AssociationSet>
+          <AssociationSet Name="direccion_fk_Direccion_Persona1" Association="Self.direccion_fk_Direccion_Persona1">
+            <End Role="persona" EntitySet="personas" />
+            <End Role="direccion" EntitySet="direccions" />
+          </AssociationSet>
+          <AssociationSet Name="empleados_fk_Empleados_Persona1" Association="Self.empleados_fk_Empleados_Persona1">
+            <End Role="persona" EntitySet="personas" />
+            <End Role="empleados" EntitySet="empleados" />
+          </AssociationSet>
+          <EntitySet Name="telefonoes" EntityType="PRHM_INSTALACIONES_RHModel.telefono" />
+          <AssociationSet Name="telefono_fk_Telefono_Persona1" Association="PRHM_INSTALACIONES_RHModel.telefono_fk_Telefono_Persona1">
+            <End Role="persona" EntitySet="personas" />
+            <End Role="telefono" EntitySet="telefonoes" />
+          </AssociationSet>
+          <EntitySet Name="usuarios" EntityType="PRHM_INSTALACIONES_RHModel.usuario" />
+          <EntitySet Name="control_de_permiso_colaborador" EntityType="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador" />
+          <AssociationSet Name="control_de_permiso_colaborador_fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1" Association="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador_fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1">
+            <End Role="catalogo_control_permisos_colaborador" EntitySet="catalogo_control_permisos_colaborador" />
+            <End Role="control_de_permiso_colaborador" EntitySet="control_de_permiso_colaborador" />
+          </AssociationSet>
+          <EntitySet Name="catalago_deducciones" EntityType="PRHM_INSTALACIONES_RHModel.catalago_deducciones" />
+        </EntityContainer>
+        <EntityType Name="telefono">
+          <Key>
+            <PropertyRef Name="idTelefono" />
+            <PropertyRef Name="Persona_Cedula" />
+          </Key>
+          <Property Name="idTelefono" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Persona_Cedula" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="PRHM_INSTALACIONES_RHModel.telefono_fk_Telefono_Persona1" FromRole="telefono" ToRole="persona" />
+        </EntityType>
+        <Association Name="telefono_fk_Telefono_Persona1">
+          <End Type="PRHM_INSTALACIONES_RHModel.persona" Role="persona" Multiplicity="1" />
+          <End Type="PRHM_INSTALACIONES_RHModel.telefono" Role="telefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="telefono">
+              <PropertyRef Name="Persona_Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Bloqueado" Type="Boolean" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="PrimerIngreso" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="control_de_permiso_colaborador">
+          <Key>
+            <PropertyRef Name="Fecha_Solicitud" />
+            <PropertyRef Name="Empleados_Id_Empleado" />
+          </Key>
+          <Property Name="Id_Permiso" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Solicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Empleados_Id_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoPermiso" Type="Int32" Nullable="false" />
+          <Property Name="Abrobado" Type="Boolean" />
+          <NavigationProperty Name="catalogo_control_permisos_colaborador" Relationship="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador_fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1" FromRole="control_de_permiso_colaborador" ToRole="catalogo_control_permisos_colaborador" />
+        </EntityType>
+        <Association Name="control_de_permiso_colaborador_fk_CONTROL_DE_PERMISO_COLABORADOR_Catalogo_Control_permisos_C1">
+          <End Type="PRHM_INSTALACIONES_RHModel.catalogo_control_permisos_colaborador" Role="catalogo_control_permisos_colaborador" Multiplicity="1" />
+          <End Type="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador" Role="control_de_permiso_colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalogo_control_permisos_colaborador">
+              <PropertyRef Name="idCatalogo_Control_permisos_Colaborador" />
+            </Principal>
+            <Dependent Role="control_de_permiso_colaborador">
+              <PropertyRef Name="IdTipoPermiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="catalago_deducciones">
+          <Key>
+            <PropertyRef Name="idCatalago_Deducciones" />
+          </Key>
+          <Property Name="idCatalago_Deducciones" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Monto" Type="Decimal" Precision="10" Scale="5" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PRHM_INSTALACIONES_RHModelStoreContainer" CdmEntityContainer="RHEntities">
+          <EntitySetMapping Name="aprobaciones">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.aprobacione">
+              <MappingFragment StoreEntitySet="aprobaciones">
+                <ScalarProperty Name="IdAprobaciones" ColumnName="IdAprobaciones" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Fecha_respuesta" ColumnName="Fecha_respuesta" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="calculo_aguinaldo">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.calculo_aguinaldo">
+              <MappingFragment StoreEntitySet="calculo_aguinaldo">
+                <ScalarProperty Name="Id_Aguinaldo" ColumnName="Id_Aguinaldo" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Dias_Trabajados" ColumnName="Dias_Trabajados" />
+                <ScalarProperty Name="Total_Salarios" ColumnName="Total_Salarios" />
+                <ScalarProperty Name="Aguinaldo" ColumnName="Aguinaldo" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cantons">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.canton">
+              <MappingFragment StoreEntitySet="canton">
+                <ScalarProperty Name="idCanton" ColumnName="idCanton" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Provincia_idProvincia" ColumnName="Provincia_idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalago_cedula">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalago_cedula">
+              <MappingFragment StoreEntitySet="catalago_cedula">
+                <ScalarProperty Name="IdCatalago_Cedula" ColumnName="IdCatalago_Cedula" />
+                <ScalarProperty Name="Descripcion_Cedula" ColumnName="Descripcion_Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalago_desempeño">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalago_desempeño">
+              <MappingFragment StoreEntitySet="catalago_desempeño">
+                <ScalarProperty Name="Id_Desempeño" ColumnName="Id_Desempeño" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalago_tipo_horas_extras">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalago_tipo_horas_extras">
+              <MappingFragment StoreEntitySet="catalago_tipo_horas_extras">
+                <ScalarProperty Name="Id_Hora_Extra" ColumnName="Id_Hora_Extra" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalago_tipo_liquidacion">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalago_tipo_liquidacion">
+              <MappingFragment StoreEntitySet="catalago_tipo_liquidacion">
+                <ScalarProperty Name="Id_Tipo_Liquidacion" ColumnName="Id_Tipo_Liquidacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalogo_control_permisos_colaborador">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalogo_control_permisos_colaborador">
+              <MappingFragment StoreEntitySet="catalogo_control_permisos_colaborador">
+                <ScalarProperty Name="idCatalogo_Control_permisos_Colaborador" ColumnName="idCatalogo_Control_permisos_Colaborador" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalogo_tipo_incapacidades">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalogo_tipo_incapacidades">
+              <MappingFragment StoreEntitySet="catalogo_tipo_incapacidades">
+                <ScalarProperty Name="idCatalogo_Tipo_Incapacidades" ColumnName="idCatalogo_Tipo_Incapacidades" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalles_liquidacion">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.detalles_liquidacion">
+              <MappingFragment StoreEntitySet="detalles_liquidacion">
+                <ScalarProperty Name="Id_Detalle_Liquidacion" ColumnName="Id_Detalle_Liquidacion" />
+                <ScalarProperty Name="Monto_Preaviso" ColumnName="Monto_Preaviso" />
+                <ScalarProperty Name="Monto_Censantia" ColumnName="Monto_Censantia" />
+                <ScalarProperty Name="Monto_Vacaciones" ColumnName="Monto_Vacaciones" />
+                <ScalarProperty Name="Monto_Aguinaldo" ColumnName="Monto_Aguinaldo" />
+                <ScalarProperty Name="Total_Liquidacion" ColumnName="Total_Liquidacion" />
+                <ScalarProperty Name="Liquidacion_Id_Liquidacion" ColumnName="Liquidacion_Id_Liquidacion" />
+                <ScalarProperty Name="Liquidacion_Empleados_Id_Empleado" ColumnName="Liquidacion_Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalles_planilla">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.detalles_planilla">
+              <MappingFragment StoreEntitySet="detalles_planilla">
+                <ScalarProperty Name="idDetalles_Planilla" ColumnName="idDetalles_Planilla" />
+                <ScalarProperty Name="Total_HorasExtra" ColumnName="Total_HorasExtra" />
+                <ScalarProperty Name="Total_Incapacidades" ColumnName="Total_Incapacidades" />
+                <ScalarProperty Name="Total_Deducciones" ColumnName="Total_Deducciones" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Planilla_Id_Planilla" ColumnName="Planilla_Id_Planilla" />
+                <ScalarProperty Name="Planilla_Empleados_Id_Empleado" ColumnName="Planilla_Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="direccions">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.direccion">
+              <MappingFragment StoreEntitySet="direccion">
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
+                <ScalarProperty Name="Otras_sennas" ColumnName="Otras_sennas" />
+                <ScalarProperty Name="Distrito_idDistrito" ColumnName="Distrito_idDistrito" />
+                <ScalarProperty Name="Distrito_Canton_idCanton" ColumnName="Distrito_Canton_idCanton" />
+                <ScalarProperty Name="Distrito_Canton_Provincia_idProvincia" ColumnName="Distrito_Canton_Provincia_idProvincia" />
+                <ScalarProperty Name="Persona_Cedula" ColumnName="Persona_Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distritoes">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.distrito">
+              <MappingFragment StoreEntitySet="distrito">
+                <ScalarProperty Name="idDistrito" ColumnName="idDistrito" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Canton_idCanton" ColumnName="Canton_idCanton" />
+                <ScalarProperty Name="Canton_Provincia_idProvincia" ColumnName="Canton_Provincia_idProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleados">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.empleado">
+              <MappingFragment StoreEntitySet="empleados">
+                <ScalarProperty Name="Id_Empleado" ColumnName="Id_Empleado" />
+                <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Persona_Cedula" ColumnName="Persona_Cedula" />
+                <ScalarProperty Name="Jefatura_Id_Empleado" ColumnName="Jefatura_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evaluacion_remndimiento_colaborador">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.evaluacion_remndimiento_colaborador">
+              <MappingFragment StoreEntitySet="evaluacion_remndimiento_colaborador">
+                <ScalarProperty Name="Id_Evaluacion" ColumnName="Id_Evaluacion" />
+                <ScalarProperty Name="Fecha_Evaluacion" ColumnName="Fecha_Evaluacion" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="Retroalimentacion" ColumnName="Retroalimentacion" />
+                <ScalarProperty Name="Catalago_Desempeño_Id_Desempeño" ColumnName="Catalago_Desempeño_Id_Desempeño" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horas_extras">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.horas_extras">
+              <MappingFragment StoreEntitySet="horas_extras">
+                <ScalarProperty Name="Id_Horas" ColumnName="Id_Horas" />
+                <ScalarProperty Name="Cantidad_Horas_Extras" ColumnName="Cantidad_Horas_Extras" />
+                <ScalarProperty Name="Fecha_Horas_Trabajadas" ColumnName="Fecha_Horas_Trabajadas" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+                <ScalarProperty Name="Catalago_Tipo_Horas_Extras_Id_Hora_Extra" ColumnName="Catalago_Tipo_Horas_Extras_Id_Hora_Extra" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="incapacidades">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.incapacidade">
+              <MappingFragment StoreEntitySet="incapacidades">
+                <ScalarProperty Name="idIncapacidades" ColumnName="idIncapacidades" />
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+                <ScalarProperty Name="Fecha_Fin" ColumnName="Fecha_Fin" />
+                <ScalarProperty Name="Monto_Incapacidad" ColumnName="Monto_Incapacidad" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+                <ScalarProperty Name="IdTipoIncapacidad" ColumnName="IdTipoIncapacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="liquidacions">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.liquidacion">
+              <MappingFragment StoreEntitySet="liquidacion">
+                <ScalarProperty Name="Id_Liquidacion" ColumnName="Id_Liquidacion" />
+                <ScalarProperty Name="Fecha_salida" ColumnName="Fecha_salida" />
+                <ScalarProperty Name="Dias_Preaviso" ColumnName="Dias_Preaviso" />
+                <ScalarProperty Name="Id_Tipo_Liquidacion" ColumnName="Id_Tipo_Liquidacion" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+                <ScalarProperty Name="Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion" ColumnName="Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personas">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.persona">
+              <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apeliido1" ColumnName="Apeliido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Catalago_Cedula_IdCatalago_Cedula" ColumnName="Catalago_Cedula_IdCatalago_Cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="planillas">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.planilla">
+              <MappingFragment StoreEntitySet="planilla">
+                <ScalarProperty Name="Id_Planilla" ColumnName="Id_Planilla" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Horas_Laboradas" ColumnName="Horas_Laboradas" />
+                <ScalarProperty Name="Catalago_Deducciones_idCatalago_Deducciones" ColumnName="Catalago_Deducciones_idCatalago_Deducciones" />
+                <ScalarProperty Name="Total_Neto" ColumnName="Total_Neto" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provincias">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.provincia">
+              <MappingFragment StoreEntitySet="provincia">
+                <ScalarProperty Name="idProvincia" ColumnName="idProvincia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vacaciones">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.vacacione">
+              <MappingFragment StoreEntitySet="vacaciones">
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+                <ScalarProperty Name="Fecha_Fin" ColumnName="Fecha_Fin" />
+                <ScalarProperty Name="Cantidad_Dias" ColumnName="Cantidad_Dias" />
+                <ScalarProperty Name="Aprobaciones_IdAprobaciones" ColumnName="Aprobaciones_IdAprobaciones" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="telefonoes">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.telefono">
+              <MappingFragment StoreEntitySet="telefono">
+                <ScalarProperty Name="Persona_Cedula" ColumnName="Persona_Cedula" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="idTelefono" ColumnName="idTelefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="PrimerIngreso" ColumnName="PrimerIngreso" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+                <ScalarProperty Name="Bloqueado" ColumnName="Bloqueado" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="control_de_permiso_colaborador">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.control_de_permiso_colaborador">
+              <MappingFragment StoreEntitySet="control_de_permiso_colaborador">
+                <ScalarProperty Name="Abrobado" ColumnName="Abrobado" />
+                <ScalarProperty Name="IdTipoPermiso" ColumnName="IdTipoPermiso" />
+                <ScalarProperty Name="Empleados_Id_Empleado" ColumnName="Empleados_Id_Empleado" />
+                <ScalarProperty Name="Fecha_Solicitud" ColumnName="Fecha_Solicitud" />
+                <ScalarProperty Name="Id_Permiso" ColumnName="Id_Permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalago_deducciones">
+            <EntityTypeMapping TypeName="PRHM_INSTALACIONES_RHModel.catalago_deducciones">
+              <MappingFragment StoreEntitySet="catalago_deducciones">
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="idCatalago_Deducciones" ColumnName="idCatalago_Deducciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

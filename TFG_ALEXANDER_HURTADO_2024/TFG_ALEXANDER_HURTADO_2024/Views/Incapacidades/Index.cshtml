@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DB.Models.Cruds.Incapacidades>
+
+@{
+    ViewBag.Title = "Incapacidades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>Incapacidades</title>
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<body>
+    <p class="text-left mb-4 ml-0">
+        @Html.ActionLink("Generar Incapacidad", "Create", null, new { @class = "btn btn-success" })
+        <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+    </p>
+
+    @*<div class="row mb-3">
+        <div class="col-md-6">
+            <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+        </div>
+    </div>*@
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Fecha inicio</th>
+                    <th class="text-center">Fecha fin</th>
+                    <th class="text-center">Monto de incapacidad</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Empleado</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.INCAPACIDADES.Fecha_Inicio)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.INCAPACIDADES.Fecha_Fin)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.INCAPACIDADES.Monto_Incapacidad)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.catalogo_Tipo_Incapacidades.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PERSONA.Nombre)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.INCAPACIDADES.idIncapacidades, idTipoIncapacidad = item.INCAPACIDADES.IdTipoIncapacidad, idEmpleado = item.INCAPACIDADES.Empleados_Id_Empleado }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.INCAPACIDADES.idIncapacidades, idTipoIncapacidad = item.INCAPACIDADES.IdTipoIncapacidad, idEmpleado = item.INCAPACIDADES.Empleados_Id_Empleado }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.INCAPACIDADES.idIncapacidades, idTipoIncapacidad = item.INCAPACIDADES.IdTipoIncapacidad, idEmpleado = item.INCAPACIDADES.Empleados_Id_Empleado }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script>
+    generarPDF('Incapacidad.pdf');
+</script>
+
+@if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

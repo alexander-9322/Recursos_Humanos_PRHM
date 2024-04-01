@@ -1,0 +1,146 @@
+﻿@model DB.Models.Usuarios.Usuario
+
+@{
+    ViewBag.Title = "Informacion Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EditarStyle.css" />
+</header>
+<style>
+    .control-label {
+        white-space: nowrap;
+    }
+
+    .panel {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+    }
+
+    .panel-heading {
+        padding: 10px 15px;
+        border-bottom: 1px solid #ddd;
+        background-color: #f5f5f5;
+        border-radius: 4px 4px 0 0;
+    }
+
+    .panel-body {
+        padding: 15px;
+    }
+
+    .panel-footer {
+        padding: 10px 15px;
+        border-top: 1px solid #ddd;
+        background-color: #f5f5f5;
+        border-radius: 0 0 4px 4px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="panel">
+            <div class="panel-heading">
+                <h4>Persona</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("Cedula", "Cédula", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Cedula
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Nombre", "Nombre", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Nombre
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Apellido1", "Primer apellido", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Apellido1
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Apellido2", "Segundo apellido", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Apellido2
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("FechaNacimiento", "Fecha de nacimiento", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.FechaNacimiento
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <h4>Usuario</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("IdUsuario", "Id usuario", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.IdUsuario
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Correo", "Correo", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Correo
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Clave", "Clave", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Clave
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <h4>Empleado</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.Label("FechaIngreso", "Fecha de ingreso", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.FechaIngreso
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Salario", "Salario", new { @class = "control-label" })
+                    <div>
+                        @ViewBag.Salario
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-offset-2 col-md-10">
+            <p>
+                @Html.ActionLink("Editar", "Edit", null, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+
+    
+}

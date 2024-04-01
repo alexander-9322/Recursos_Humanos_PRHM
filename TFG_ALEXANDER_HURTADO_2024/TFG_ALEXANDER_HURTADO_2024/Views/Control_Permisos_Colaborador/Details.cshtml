@@ -1,0 +1,50 @@
+﻿@model DB.Models.control_de_permiso_colaborador
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CONTROL_DE_PERMISO_COLABORADOR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Permiso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id_Permiso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Solicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Solicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.catalogo_control_permisos_colaborador.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catalogo_control_permisos_colaborador.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleados_Id_Empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleados_Id_Empleado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

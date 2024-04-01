@@ -1,0 +1,106 @@
+﻿@model IEnumerable<DB.Models.Cruds.Planilla>
+
+@{
+    ViewBag.Title = "Planilla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>Planilla</title>
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/content/BuscadorStyle.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <p class="text-left mb-4 ml-0">
+        @Html.ActionLink("Calcular planilla", "Create", null, new { @class = "btn btn-success" })
+        <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+    </p>
+
+    <p class="text-left mb-4 ml-0">
+        @Html.ActionLink("Calcular planilla para todos los colaboradores", "GenerarPlanillas", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("Recalcular planilla para todos los colaboradores", "RecalcularPlanillas", null, new { @class = "btn btn-primary" })
+    </p>
+
+    <div class="row mb-3">
+        <div class="col-md-6 offset-md-0">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Fecha de emision</th>
+                    <th class="text-center">Cantidad de horas laboradas</th>
+                    <th class="text-center">Impuesto aplicados</th>
+                    <th class="text-center">Monto de impuesto aplicados</th>
+                    <th class="text-center">Monto horas extras</th>
+                    <th class="text-center">Monto incapacidades</th>
+                    <th class="text-center">Monto de renta aplicada</th>
+                    <th class="text-center">Total de planilla</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.PERSONA.Nombre)</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Fecha)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Horas_Laboradas)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DEDUCCIONES.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_Deducciones)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_HorasExtra)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_Incapacidades)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.SubTotal)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Total_Neto)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PERSONA.Nombre) @Html.DisplayFor(modelItem => item.PERSONA.Apeliido1) @Html.DisplayFor(modelItem => item.PERSONA.Apellido2)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar Planilla", "Edit", new { id = item.PLANILLA.Id_Planilla, idCatalogo = item.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones, idCatalogo2 = item.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Detalle", "Details", new { id = item.PLANILLA.Id_Planilla, idCatalogo = item.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones, idCatalogo2 = item.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Rechazar", "Delete", new { id = item.PLANILLA.Id_Planilla, idCatalogo = item.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones, idDetalles = item.DETALLES_PLANILLA.idDetalles_Planilla }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").each(function () {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(value)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    generarPDF('Planilla.pdf');
+
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }
+
+
+
+

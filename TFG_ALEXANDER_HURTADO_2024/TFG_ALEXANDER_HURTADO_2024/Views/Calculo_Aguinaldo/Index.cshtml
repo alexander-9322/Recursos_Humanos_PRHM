@@ -1,0 +1,94 @@
+﻿@model IEnumerable<DB.Models.Cruds.Aguinaldo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-left mb-4">Cálculo de aguinaldo</h2>
+            <hr />
+            <div class="text-left mb-4 ml-0">
+                <a href="@Url.Action("Create")" class="btn btn-success">Calcular Aguinaldo</a>
+                <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+            </div>
+            <div class="text-left mb-4 ml-0">
+                <a href="@Url.Action("GenerarAguinaldos")" class="btn btn-primary">Calcular Aguinaldo a Todos los Colaboradores</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+        </div>
+    </div>
+
+    @*<div class="row mb-3">
+        <div class="col-md-6">
+            <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+        </div>
+    </div>*@
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="tablaFiltrar">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Año de Ingreso</th>
+                    <th class="text-center">Dias Trabajados</th>
+                    <th class="text-center">Total de Salarios</th>
+                    <th class="text-center">Monto de Aguinaldo</th>
+                    <th class="text-center">Cedula</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.AGUINALDO.Año)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.AGUINALDO.Dias_Trabajados)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.AGUINALDO.Total_Salarios)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.AGUINALDO.Aguinaldo)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PERSONA.Cedula)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PERSONA.Nombre) @Html.DisplayFor(modelItem => item.PERSONA.Apeliido1) @Html.DisplayFor(modelItem => item.PERSONA.Apellido2)</td>
+                        @*<td class="text-center">*@
+                        <td>
+                            @Html.ActionLink("Detalles", "Details", new { idAguinaldo = item.AGUINALDO.Id_Aguinaldo, idEmpleado = item.AGUINALDO.Empleados_Id_Empleado }, new { @class = "btn btn-info btn-sm" }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { idAguinaldo = item.AGUINALDO.Id_Aguinaldo, idEmpleado = item.AGUINALDO.Empleados_Id_Empleado }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <script>
+            $(document).ready(function () {
+                $("#searchInput").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("tbody tr").each(function () {
+                        var rowText = $(this).text().toLowerCase();
+                        if (rowText.includes(value)) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+            });
+        </script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }
+
+    </div>
+</div>
+<script>
+
+    generarPDF('Calculo_Aguinaldo.pdf');
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

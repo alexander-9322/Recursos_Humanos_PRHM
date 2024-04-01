@@ -1,0 +1,247 @@
+﻿@model DB.Models.Usuarios.Usuario
+
+@{
+    ViewBag.Title = "Editar Informacion de Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EditarStyle.css" />
+</header>
+
+<style>
+    .control-label {
+        white-space: nowrap;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>PERSONA</h4>
+    <hr />
+
+    @Html.HiddenFor(model => model.PERSONA.Cedula)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PERSONA.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PERSONA.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PERSONA.Nombre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PERSONA.Apeliido1, "Primer apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PERSONA.Apeliido1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PERSONA.Apeliido1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PERSONA.Apellido2, "Segundo apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PERSONA.Apellido2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PERSONA.Apellido2, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PERSONA.Fecha_Nacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.PERSONA.Fecha_Nacimiento, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", max = "2009-12-31" })
+            @Html.ValidationMessageFor(model => model.PERSONA.Fecha_Nacimiento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TELEFONO.idTelefono, "Numero de teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TELEFONO.idTelefono, new { htmlAttributes = new { @class = "form-control", id = "telefonoInput" } })
+            @Html.ValidationMessageFor(model => model.TELEFONO.idTelefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TELEFONO.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.TELEFONO.Activo, new { @checked = "checked" })
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DIRECCION.Distrito_Canton_Provincia_idProvincia, "Provincia", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.DIRECCION.Distrito_Canton_Provincia_idProvincia, (SelectList)ViewBag.Provincias, "Seleccione una provincia", new { @class = "form-control", @onchange = "CambiarProvincia();" })
+            @Html.ValidationMessageFor(model => model.DIRECCION.Distrito_Canton_Provincia_idProvincia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DIRECCION.Distrito_Canton_idCanton, "Cantón", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.DIRECCION.Distrito_Canton_idCanton, (SelectList)ViewBag.Cantones, "Seleccione un cantón", new { @class = "form-control", @onchange = "CambiarCanton();" })
+            @Html.ValidationMessageFor(model => model.DIRECCION.Distrito_Canton_idCanton, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DIRECCION.Distrito_idDistrito, "Distrito", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.DIRECCION.Distrito_idDistrito, (SelectList)ViewBag.Distritos, "Seleccione un distrito", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DIRECCION.Distrito_idDistrito, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DIRECCION.Otras_sennas, "Otras señas", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DIRECCION.Otras_sennas, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DIRECCION.Otras_sennas, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <h4>EMPLEADO</h4>
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.EMPLEADO.Fecha_Ingreso, "Fecha de ingreso", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.EMPLEADO.Fecha_Ingreso, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.EMPLEADO.Fecha_Ingreso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EMPLEADO.Salario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EMPLEADO.Salario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EMPLEADO.Salario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Añade aquí los campos correspondientes a la clase EMPLEADO -->
+
+    <h4>USUARIO</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.USUARIO.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.USUARIO.Correo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.USUARIO.Correo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EMPLEADO.Jefatura_Id_Empleado, "Tipo de usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="Jefatura_Id_Empleado" name="EMPLEADO.Jefatura_Id_Empleado" class="form-control">
+                <option value="1">Administrador</option>
+                <option value="2">Empleado</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.USUARIO.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.USUARIO.Activo, new { id = "Id_Activo" }) Activo
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.USUARIO.Bloqueado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.USUARIO.Bloqueado, new { id = "Id_Bloqueado" }) Bloqueado
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Editar" class="btn btn-default" />
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var telefonoInput = document.getElementById("telefonoInput");
+
+        telefonoInput.addEventListener("input", function () {
+            // Removemos todos los caracteres que no sean números
+            telefonoInput.value = telefonoInput.value.replace(/\D/g, '');
+
+            // Validamos la longitud
+            if (telefonoInput.value.length > 8) {
+                telefonoInput.value = telefonoInput.value.slice(0, 8);
+            }
+        });
+    });
+
+    function CambiarCanton() {
+        var idCanton = $("#DIRECCION_IdCanton").val();
+
+        $.ajax({
+            url: "@Url.Action("CambiarCanton", "Usuario")",
+            type: "POST",
+            data: { idCanton: idCanton },
+            success: function (result) {
+                $("#DIRECCION_IdDistrito").empty(); // Vacía el dropdown de Distritos
+                $.each(result, function (index, item) {
+                    $("#DIRECCION_IdDistrito").append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function CambiarProvincia() {
+        var idProvincia = $("#DIRECCION_IdProvincia").val();
+
+        $.ajax({
+            url: "@Url.Action("CambiarProvincia", "Usuario")",
+            type: "POST",
+            data: { idProvincia: idProvincia },
+            success: function (result) {
+                $("#DIRECCION_IdCanton").empty(); // Vacía el dropdown de Cantones
+                $("#DIRECCION_IdDistrito").empty(); // Vacía el dropdown de Distritos
+                $.each(result, function (index, item) {
+                    $("#DIRECCION_IdCanton").append($('<option>', {
+                        value: item.Value,
+                        text: item.Text
+                    }));
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+</script>

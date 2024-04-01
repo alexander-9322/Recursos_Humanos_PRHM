@@ -1,0 +1,48 @@
+﻿/* Contenido de styles.css */
+
+/* Estilos para el cuerpo de la página */
+body {
+    padding-top: 60px; /* Ajusta el espacio superior para dejar espacio para la barra de navegación si la tienes */
+}
+
+/* Estilos para la barra de navegación (si la tienes) */
+.navbar {
+    margin-bottom: 20px; /* Ajusta el margen inferior de la barra de navegación */
+}
+
+/* Estilos para las tablas */
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+    .table th, .table td {
+        padding: 0.75rem; /* Ajusta el espacio interno de las celdas */
+        vertical-align: top; /* Ajusta la alineación vertical de las celdas */
+        border-top: 1px solid #dee2e6; /* Agrega una línea de separación entre las filas */
+    }
+
+/* Estilos para los botones */
+.btn {
+    padding: 10px 20px; /* Ajusta el relleno de los botones */
+    font-size: 16px; /* Ajusta el tamaño de fuente de los botones */
+}
+
+/* Estilos para la clase .container-fluid */
+.container-fluid {
+    padding: 20px; /* Ajusta el espacio interno del contenedor fluido */
+}
+
+/* Media query para dispositivos más pequeños */
+@media (max-width: 768px) {
+    body {
+        padding-top: 20px; /* Ajusta el espacio superior para pantallas más pequeñas */
+    }
+
+    .btn {
+        padding: 8px 16px; /* Ajusta el relleno de los botones para pantallas más pequeñas */
+        font-size: 14px; /* Ajusta el tamaño de fuente de los botones para pantallas más pequeñas */
+    }
+}

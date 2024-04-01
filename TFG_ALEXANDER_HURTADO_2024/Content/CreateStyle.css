@@ -1,0 +1,40 @@
+﻿
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel {
+    width: 503px;
+    border: 2px solid #5bc0de;
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+.panel-heading {
+    background-color: #5bc0de;
+    border-bottom: 2px solid #5bc0de;
+    border-radius: 6px 6px 0 0;
+}
+
+.panel-body {
+    width:500px;
+    padding: 20px;
+    background-color: #f0f0f0; /* Color de fondo gris */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.btn-success {
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
+

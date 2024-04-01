@@ -1,0 +1,250 @@
+﻿@model IEnumerable<DB.Models.distrito>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+</head>
+
+<style>
+    .btn-icon {
+        font-size: 18px;
+    }
+
+    .btn-link:hover i {
+        font-size: 24px;
+    }
+
+    /* Estilo del DataTable */
+    table.dataTable thead th {
+        background-color: #f2f2f2;
+        border-color: #dee2e6;
+        font-size: 16px;
+        font-weight: bold;
+        color: black; /* Cambia el color de la letra a negro */
+    }
+
+    table.dataTable tbody td {
+        border-color: #dee2e6;
+        font-size: 14px;
+    }
+
+    .badge-activo {
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 5px;
+    }
+
+    .btn-activo-si {
+        background-color: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+
+    .btn-activo-no {
+        background-color: #dc3545;
+        color: white;
+        border-color: #dc3545;
+    }
+
+    .btn-group a.btn-link:hover i {
+        transform: scale(1.2);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter {
+        text-align: right; /* Alinea el campo de búsqueda a la derecha */
+        margin-bottom: 10px; /* Espacio entre el campo de búsqueda y la tabla */
+    }
+
+        /*Estilos del buscador del DataTable*/
+
+        div.dataTables_wrapper div.dataTables_filter input {
+            width: 300px; /* Ancho del campo de búsqueda */
+            padding: 8px 12px; /* Espaciado interno del campo de búsqueda */
+            border: 1px solid #ccc; /* Borde del campo de búsqueda */
+            border-radius: 5px; /* Radio de borde del campo de búsqueda */
+            background-color: #f9f9f9; /* Color de fondo del campo de búsqueda */
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra interna del campo de búsqueda */
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Transición suave para el borde y la sombra */
+        }
+
+            div.dataTables_wrapper div.dataTables_filter input:focus {
+                border-color: #66afe9; /* Color del borde al enfocar el campo de búsqueda */
+                outline: 0; /* Elimina el contorno al enfocar el campo de búsqueda */
+                box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); /* Sombra al enfocar el campo de búsqueda */
+            }
+
+    div.dataTables_wrapper div.dataTables_length select {
+        width: auto; /* Ancho automático para el selector de cantidad de registros por página */
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    div.dataTables_wrapper div.dataTables_length select {
+        width: auto; /* Ancho automático */
+        padding: 6px 10px; /* Espaciado interno */
+        font-size: 14px; /* Tamaño de fuente */
+        border-radius: 5px; /* Radio de borde */
+        border: 1px solid #ccc; /* Borde */
+        background-color: #f9f9f9; /* Color de fondo */
+        color: #333; /* Color de texto */
+        appearance: none; /* Eliminar estilo nativo del selector */
+        -webkit-appearance: none; /* Eliminar estilo nativo en webkit */
+        -moz-appearance: none; /* Eliminar estilo nativo en Firefox */
+        cursor: pointer; /* Cursor al pasar por encima */
+        outline: none; /* Eliminar contorno al enfocar */
+    }
+
+        div.dataTables_wrapper div.dataTables_length select:hover,
+        div.dataTables_wrapper div.dataTables_length select:focus {
+            border-color: #66afe9; /* Color de borde al pasar por encima o al enfocar */
+        }
+
+    /* Estilo para el texto "Mostrar X registros por página" */
+    div.dataTables_wrapper div.dataTables_length label {
+        font-size: 14px; /* Tamaño de fuente */
+        margin-right: 10px; /* Margen derecho */
+        color: #333; /* Color de texto */
+    }
+
+    /* Estilo para el contenedor del selector y el texto */
+    div.dataTables_wrapper div.dataTables_length {
+        margin-bottom: 10px; /* Espacio inferior */
+    }
+        /*Estilo de selecctor de cantidades*/
+        div.dataTables_wrapper div.dataTables_length select {
+            width: auto; /* Ancho automático */
+            padding: 6px 10px; /* Espaciado interno */
+            font-size: 14px; /* Tamaño de fuente */
+            border-radius: 5px; /* Radio de borde */
+            border: 1px solid #ccc; /* Borde */
+            background-color: #f9f9f9; /* Color de fondo */
+            color: #333; /* Color de texto */
+            appearance: none; /* Eliminar estilo nativo del selector */
+            -webkit-appearance: none; /* Eliminar estilo nativo en webkit */
+            -moz-appearance: none; /* Eliminar estilo nativo en Firefox */
+            cursor: pointer; /* Cursor al pasar por encima */
+            outline: none; /* Eliminar contorno al enfocar */
+        }
+
+            div.dataTables_wrapper div.dataTables_length select:hover,
+            div.dataTables_wrapper div.dataTables_length select:focus {
+                border-color: #66afe9; /* Color de borde al pasar por encima o al enfocar */
+            }
+
+        /* Estilo para el texto "Mostrar X registros por página" */
+        div.dataTables_wrapper div.dataTables_length label {
+            font-size: 14px; /* Tamaño de fuente */
+            margin-right: 10px; /* Margen derecho */
+            color: #333; /* Color de texto */
+        }
+
+    /* Estilo para el contenedor del selector y el texto */
+    div.dataTables_wrapper div.dataTables_length {
+        margin-bottom: 10px; /* Espacio inferior */
+    }
+
+    /* Estilo para el texto "Mostrando página X de Y" */
+    div.dataTables_info {
+        font-size: 14px; /* Tamaño de fuente */
+        color: #333; /* Color de texto */
+        margin-top: 10px; /* Margen superior */
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-left mb-4">Distrito</h2>
+            <p>
+                @Html.ActionLink("Crer nuevo", "Create", null, new { @class = "btn btn-success" })
+                <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <hr />
+
+    <div class="table-responsive">
+        <table id="distritoTable" class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center font-weight-bold">Distrito</th>
+                    <th class="text-center font-weight-bold">Cantón</th>
+                    <th class="text-center font-weight-bold">Provincia</th>
+                    <th class="text-center font-weight-bold">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.canton.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.canton.provincia.Descripcion)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.idDistrito, idCanton = item.Canton_idCanton, idProvincia = item.Canton_Provincia_idProvincia }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.idDistrito, idCanton = item.Canton_idCanton, idProvincia = item.Canton_Provincia_idProvincia }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.idDistrito, idCanton = item.Canton_idCanton, idProvincia = item.Canton_Provincia_idProvincia }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+@section scripts {
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#distritoTable').DataTable({
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                "language": {
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+<script>
+    generarPDF('Distritos.pdf');
+</script>
+
+@if (Session["Error"] != null)
+{
+    <script>
+        NoSeElimino('@Session["Error"].ToString()');
+    </script>
+}

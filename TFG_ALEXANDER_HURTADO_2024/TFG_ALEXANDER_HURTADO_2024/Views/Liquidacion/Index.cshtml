@@ -1,0 +1,81 @@
+﻿@model IEnumerable<DB.Models.Cruds.Liquidacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-left mb-4">Liquidación</h2>
+            <hr />
+            <div class="text-left mb-4 ml-0">
+                <a href="@Url.Action("Create")" class="btn btn-success">Crear</a>
+                <button id="generarPdfBtn" class="btn btn-danger ml-2">Generar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th class="text-center">Id liquidación</th>
+                            <th class="text-center">Fecha de salida</th>
+                            <th class="text-center">Dias de preaviso</th>
+                            <th class="text-center">Tipo de liquidación</th>
+                            <th class="text-center">Monto Preaviso</th>
+                            <th class="text-center">Monto Cesantia</th>
+                            <th class="text-center">Monto Vacaciones</th>
+                            <th class="text-center">Monto Aguinaldo</th>
+                            <th class="text-center">Monto</th>
+                            <th class="text-center">Colaborador</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.LIQUIDACION.Id_Liquidacion)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.LIQUIDACION.Fecha_salida)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.LIQUIDACION.Dias_Preaviso)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.LIQUIDACION.catalago_tipo_liquidacion.Descripcion)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_LIQUIDACION.Monto_Preaviso)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_LIQUIDACION.Monto_Censantia)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_LIQUIDACION.Monto_Vacaciones)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_LIQUIDACION.Monto_Aguinaldo)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.LIQUIDACION.Monto)</td>
+                                <td class="text-center">@Html.DisplayFor(modelItem => item.LIQUIDACION.Empleados_Id_Empleado)</td>
+                                <td class="text-center">
+                                    @*@Html.ActionLink("Editar", "Edit", new { idLiquidacion = item.LIQUIDACION.Id_Liquidacion, idEmpleado = item.LIQUIDACION.Empleados_Id_Empleado }, new { @class = "btn btn-warning btn-sm" }) |*@
+                                    @Html.ActionLink("Detalles", "Details", new { idLiquidacion = item.LIQUIDACION.Id_Liquidacion, idEmpleado = item.LIQUIDACION.Empleados_Id_Empleado }, new { @class = "btn btn-info btn-sm" }) |
+                                    @Html.ActionLink("Eliminar", "Delete", new { idLiquidacion = item.LIQUIDACION.Id_Liquidacion, idEmpleado = item.LIQUIDACION.Empleados_Id_Empleado }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    generarPDF('Liquidacion.pdf');
+
+
+</script> @if (Session["Error"] != null)
+{
+    <script>NoSeElimino('@Session["Error"].ToString()');</script>
+}

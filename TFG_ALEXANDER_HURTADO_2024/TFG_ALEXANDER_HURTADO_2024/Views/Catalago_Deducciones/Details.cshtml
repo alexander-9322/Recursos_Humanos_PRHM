@@ -1,0 +1,48 @@
+﻿@model DB.Models.catalago_deducciones
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/DetalleStyle.css" />
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Detalles de Deducciones</h2>
+                </div>
+
+                <div class="panel-body">
+                    <h4>Deducciones</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Descripción
+                        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Monto)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Descripcion)
+                        </dd>
+                        <dd>
+                            @Model.Monto.ToString()
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="panel-footer text-center">
+                    <p>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.idCatalago_Deducciones }, new { @class = "btn btn-default" }) |
+                        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

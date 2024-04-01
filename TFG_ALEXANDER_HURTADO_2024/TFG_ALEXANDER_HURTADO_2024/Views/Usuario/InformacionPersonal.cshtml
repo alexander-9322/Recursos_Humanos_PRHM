@@ -1,0 +1,107 @@
+﻿@model DB.Models.Usuarios.Usuario
+
+@{
+    ViewBag.Title = "Informacion Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EditarStyle.css" />
+
+</header>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>PERSONA</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.Label("Cedula", "Cedula", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Cedula
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Nombre", "Nombre", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Nombre
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Apellido1", "Apellido1", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Apellido1
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Apellido2", "Apellido2", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Apellido2
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("FechaNacimiento", "FechaNacimiento", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.FechaNacimiento
+        </div>
+    </div>
+
+
+
+    <h4>USUARIO</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.Label("IdUsuario", "IdUsuario", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.IdUsuario
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Correo", "Correo", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Correo
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Clave", "Clave", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Clave
+        </div>
+    </div>
+
+
+    <h4>EMPLEADO</h4>
+    <hr />
+
+    <div class="form-group">
+        @Html.Label("FechaIngreso", "FechaIngreso", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.FechaIngreso
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Salario", "Salario", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @ViewBag.Salario
+        </div>
+    </div>
+
+    <div class="panel-footer text-center">
+        <p>
+            @Html.ActionLink("Editar", "Edit", null, new { @class = "btn btn-default" })
+        </p>
+    </div>
+
+</div>
+}

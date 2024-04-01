@@ -1,0 +1,14 @@
+﻿.container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px; /* Agrega un margen superior para separar del encabezado si es necesario */
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.ml-0 {
+    margin-left: 0 !important;
+}

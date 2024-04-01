@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DB.Models.Cruds.Planilla>
+
+@{
+    ViewBag.Title = "Planilla Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<h2 class="text-left mb-4">Planilla</h2>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th class="text-center">Fecha de emisión</th>
+                <th class="text-center">Cantidad de horas laboradas</th>
+                <th class="text-center">Impuesto aplicados</th>
+                <th class="text-center">Monto de impuesto aplicados</th>
+                <th class="text-center">Monto horas extras</th>
+                <th class="text-center">Monto incapacidades</th>
+                <th class="text-center">Monto de renta aplicada</th>
+                <th class="text-center">Total de planilla</th>
+                <th class="text-center">@Html.DisplayNameFor(model => model.PERSONA.Nombre)</th>
+                @*<th class="text-center">Acciones</th>*@
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Fecha)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Horas_Laboradas)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DEDUCCIONES.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_Deducciones)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_HorasExtra)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.Total_Incapacidades)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.DETALLES_PLANILLA.SubTotal)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PLANILLA.Total_Neto)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.PERSONA.Nombre) @Html.DisplayFor(modelItem => item.PERSONA.Apeliido1) @Html.DisplayFor(modelItem => item.PERSONA.Apellido2)</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No hay datos disponibles</td>
+                </tr>
+            }
+
+
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    generarPDF('Planilla_Personal.pdf');
+
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

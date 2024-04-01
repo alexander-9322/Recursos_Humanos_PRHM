@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DB.Models.catalago_tipo_horas_extras>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+    <link rel="stylesheet" type="text/css" href="~/content/BuscadorStyle.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-left mb-4">Catálago de hora extra</h2>
+            <hr />
+            <div class="text-left mb-4 ml-0">
+                @Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-success" })
+                <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6 offset-md-0">
+            <div class="input-group">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar...">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.Porcentaje)</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Porcentaje)</td>
+                        <td class="text-center">
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id_Hora_Extra }, new { @class = "btn btn-warning btn-sm" })
+                            @Html.ActionLink("Detalles", "Details", new { id = item.Id_Hora_Extra }, new { @class = "btn btn-info btn-sm" })
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id_Hora_Extra }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("tbody tr").each(function () {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(value)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+<script>
+    generarPDF('Catalogo_Tipo_Horas_Extra.pdf');
+
+
+</script> @if (Session["Error"] != null){ <script>NoSeElimino('@Session["Error"].ToString()');</script> }

@@ -1,0 +1,114 @@
+﻿@model DB.Models.Usuarios.Usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>USUARIO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.IdUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.IdUsuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.Clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIO.Bloqueado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIO.Bloqueado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.Apeliido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.Apeliido1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.Apellido2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.Apellido2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSONA.Fecha_Nacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSONA.Fecha_Nacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLEADO.Fecha_Ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.Fecha_Ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLEADO.Salario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.Salario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLEADO.Jefatura_Id_Empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLEADO.Jefatura_Id_Empleado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

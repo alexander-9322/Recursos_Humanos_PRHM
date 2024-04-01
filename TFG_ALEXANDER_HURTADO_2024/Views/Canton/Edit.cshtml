@@ -1,0 +1,75 @@
+﻿@model DB.Models.canton
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .form-horizontal {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 2px solid #5bc0de;
+        border-radius: 8px;
+        margin-top: 50px;
+        background-color: #f0f0f0; /* Color de fondo gris */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-default {
+        background-color: #5bc0de;
+        border-color: #5bc0de;
+        color: #fff;
+    }
+
+        .btn-default:hover {
+            background-color: #4da2c1;
+            border-color: #4da2c1;
+        }
+</style>
+
+@*<h2>Edit</h2>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Cantón</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.idCanton)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @* Mostrar lista de provincias y preseleccionar la provincia actual *@
+        @Html.LabelFor(model => model.Provincia_idProvincia, "Provincia", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Provincia_idProvincia", ViewBag.IdProvincia as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Provincia_idProvincia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+            <a href="@Url.Action("Index")" class="btn btn-danger back-to-list">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@

@@ -1,0 +1,66 @@
+﻿@model DB.Models.Cruds.Planilla
+
+@{
+    ViewBag.Title = "Crear Planilla";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/content/CreateStyle.css">
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Crear Planilla</h2>
+                </div>
+
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>PLANILLA</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PLANILLA.Horas_Laboradas, "Horas Laboradas", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PLANILLA.Horas_Laboradas, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PLANILLA.Horas_Laboradas, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PERSONA.Cedula, "Cédula", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.PERSONA.Cedula, (SelectList)ViewBag.Cedula, "Seleccione al empleado", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PERSONA.Cedula, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones, "Catalogo Deduccion", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones, (SelectList)ViewBag.Catalago_Deducciones_idCatalago_Deducciones, "Seleccione al empleado", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PLANILLA.Catalago_Deducciones_idCatalago_Deducciones, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Crear" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

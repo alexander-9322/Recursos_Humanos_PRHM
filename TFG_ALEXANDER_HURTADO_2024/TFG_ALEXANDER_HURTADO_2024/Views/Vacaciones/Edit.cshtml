@@ -1,0 +1,79 @@
+﻿@model DB.Models.Cruds.Vacaciones
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EditarStyle.css" />
+</header>
+
+<style>
+    .control-label{
+        white-space: nowrap;
+    }
+</style>
+
+<h2>Editar vacaciones</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Vacaciones</h4>
+    <hr />
+
+    @Html.HiddenFor(model => model.APROBACION.IdAprobaciones)
+
+    @Html.HiddenFor(model => model.PERSONA.Cedula)
+
+    @Html.HiddenFor(model => model.VACACION.Aprobaciones_IdAprobaciones)
+
+    @Html.HiddenFor(model => model.VACACION.Empleados_Id_Empleado)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VACACION.Fecha_Inicio, "Fecha de inicio", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.VACACION.Fecha_Inicio, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.VACACION.Fecha_Inicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VACACION.Cantidad_Dias, "Cantidad de días", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VACACION.Cantidad_Dias, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VACACION.Cantidad_Dias, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.APROBACION.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="Estado" name="APROBACION.Estado" class="form-control">
+                <option value="Aprobada">Aprobada</option>
+                <option value="Rechazada">Rechazada</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.APROBACION.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.APROBACION.Comentario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.APROBACION.Comentario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}
+
+

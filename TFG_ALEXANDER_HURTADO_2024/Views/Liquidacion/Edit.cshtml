@@ -1,0 +1,78 @@
+﻿@model DB.Models.Cruds.Liquidacion
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/EditarStyle.css" />
+</header>
+
+<style>
+    .control-label
+    {
+        white-space: nowrap;
+    }
+</style>
+
+<h2>Editar liquidación</h2>
+<HR />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Liquidación</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.LIQUIDACION.Id_Liquidacion)
+
+    @Html.HiddenFor(model => model.LIQUIDACION.Catalago_Tipo_Liquidacion_Id_Tipo_Liquidacion)
+
+    @Html.HiddenFor(model => model.LIQUIDACION.Id_Tipo_Liquidacion)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LIQUIDACION.Fecha_salida, "Fecha de salida", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.LIQUIDACION.Fecha_salida, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.LIQUIDACION.Fecha_salida, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HizoPreaviso, "¿Realizo preaviso?", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="HizoPreaviso" name="HizoPreaviso" class="form-control">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+    </div>
+
+
+    @Html.HiddenFor(model => model.LIQUIDACION.Id_Tipo_Liquidacion)
+    @Html.HiddenFor(model => model.LIQUIDACION.Empleados_Id_Empleado)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LIQUIDACION.Monto, "Monto", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LIQUIDACION.Monto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LIQUIDACION.Monto, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default" />
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger back-to-list" })
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    
+</div>

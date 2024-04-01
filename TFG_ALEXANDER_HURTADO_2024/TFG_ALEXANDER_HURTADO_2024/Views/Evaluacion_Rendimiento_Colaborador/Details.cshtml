@@ -1,0 +1,73 @@
+﻿@model DB.Models.evaluacion_remndimiento_colaborador
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<<header>
+    <link rel="stylesheet" type="text/css" href="~/Content/DetalleStyle.css" />
+</header>
+
+ <style>
+     .control-label{
+         white-space: nowrap;
+     }
+ </style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Detalles de evaluación de los colaboradores</h2>
+                </div>
+
+                <div class="panel-body">
+                    <h4>Evaluación del rendimiento</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha de evaluación
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Fecha_Evaluacion)
+                        </dd>
+
+                        <dt>
+                            Calificación
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Calificacion)
+                        </dd>
+
+                        <dt>
+                            Retroalimentación
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Retroalimentacion)
+                        </dd>
+
+                        <dt>
+                            Descripción 
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.catalago_desempeño.Descripcion)
+                        </dd>
+
+
+                    </dl>
+                </div>
+                <div class="panel-footer text-center">
+                    <p>
+                        @Html.ActionLink("Volver al Listado", "Index", null, new { @class = "btn btn-danger" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

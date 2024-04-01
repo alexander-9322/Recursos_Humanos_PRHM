@@ -1,0 +1,56 @@
+﻿@model DB.Models.persona
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <link rel="stylesheet" type="text/css" href="~/content/CreateStyle.css">
+</header>
+
+<style>
+    .control-label {
+        white-space:nowrap;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="text-center">Cálculo de aguinaldo</h2>
+                </div>
+
+                <div class="panel-body">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Cedula, "Cédula", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.Cedula, (SelectList)ViewBag.Cedula, "Seleccione un usuario", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-success">Crear</button>
+                                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

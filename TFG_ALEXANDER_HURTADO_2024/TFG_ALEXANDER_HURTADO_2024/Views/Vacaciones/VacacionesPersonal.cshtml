@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DB.Models.Cruds.Vacaciones>
+
+@{
+    ViewBag.Title = "Vacaciones Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var cantidadDias = ViewBag.cantidad_Dias;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<h2 class="display-4 mb-4">Registro de Vacaciones</h2>
+<hr />
+
+<p class="lead">Días de vacaciones disponibles: <span class="text-danger">@cantidadDias</span></p>
+<hr />
+
+<p class="text-left mb-4 ml-0">
+    @Html.ActionLink("Solicitud de Vacaciones", "Create", null, new { @class = "btn btn-success" })
+    <button id="generarPdfBtn" class="btn btn-danger">Generar PDF</button>
+</p>
+
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        @if (Model.Any())
+        {
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Fecha de inicio</th>
+                    <th class="text-center">Fecha fin</th>
+                    <th class="text-center">Cantidad de días</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Nombre</th>
+
+                </tr>
+            </thead>
+        }
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.VACACION.Fecha_Inicio)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.VACACION.Fecha_Fin)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.VACACION.Cantidad_Dias)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.APROBACION.Estado)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.PERSONA.Nombre)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    generarPDF('Vacaciones_Personal.pdf');
+
+
+</script> @if (Session["Error"] != null)
+{
+    <script>NoSeElimino('@Session["Error"].ToString()');</script>
+}

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DB.Models.PERSONA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/content/IndexStyle.css">
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-left mb-4">Lista de Personas</h2>
+            <hr />
+            <div class="text-left mb-4 ml-0">
+                <a href="@Url.Action("Create")" class="btn btn-success">Crear Nuevo</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Primer Apellido</th>
+                    <th class="text-center">Segundo Apellido</th>
+                    <th class="text-center">Fecha de Nacimiento</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Nombre)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Apellido1)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Apellido2)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Fecha_Nacimiento)</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.Cedula })" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="@Url.Action("Details", new { id = item.Cedula })" class="btn btn-info btn-sm">Detalles</a>
+                            <a href="@Url.Action("Delete", new { id = item.Cedula })" class="btn btn-danger btn-sm">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
